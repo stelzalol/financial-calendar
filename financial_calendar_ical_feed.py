@@ -274,6 +274,78 @@ def impact_for(title: str) -> str:
     return "high" if any(k in t for k in HIGH_IMPACT_TERMS) else "medium"
 
 
+def release_explainer_key_for(title: str) -> str | None:
+    t = title.lower()
+
+    if "core pce" in t or "pce price index" in t or "personal income and outlays" in t:
+        return "core_pce"
+
+    if "consumer price" in t or re.search(r"\bcpi\b", t):
+        return "cpi"
+
+    if "producer price" in t or re.search(r"\bppi\b", t):
+        return "ppi"
+
+    if (
+        "employment situation" in t
+        or "nonfarm" in t
+        or "payroll" in t
+        or "labour force" in t
+        or "labor force" in t
+        or "unemployment" in t
+    ):
+        return "employment"
+
+    if "gdp" in t or "gross domestic product" in t or "national accounts" in t:
+        return "gdp"
+
+    if "retail sales" in t or "retail trade" in t:
+        return "retail_sales"
+
+    if (
+        "fomc" in t
+        or "federal open market" in t
+        or "monetary policy" in t
+        or "interest rate" in t
+        or "cash rate" in t
+        or "statement on monetary policy" in t
+    ):
+        return "central_bank"
+
+    if "wage price" in t or "average weekly earnings" in t or "wages" in t:
+        return "wages"
+
+    return None
+
+
+def release_explainer_for(title: str) -> str | None:
+    key = release_explainer_key_for(title)
+
+    if not key:
+        return None
+
+    explainer = RELEASE_EXPLAINERS.get(key)
+
+    if not explainer:
+        return None
+
+    parts = [
+        f"What it is: {explainer['name']}",
+        f"Measures: {explainer['measures']}",
+        f"Usual market effect: {explainer['usual_effect']}",
+        f"Why traders care: {explainer['why_traders_care']}",
+        f"Frequency: {explainer['frequency']}",
+    ]
+
+    if explainer.get("notes"):
+        parts.append(f"Notes: {explainer['notes']}")
+
+    if explainer.get("acronyms"):
+        parts.append(f"Acronyms: {explainer['acronyms']}")
+
+    return "\n".join(parts)
+
+
 def ensure_utc(dt: datetime) -> datetime:
     if dt.tzinfo is None:
         return dt.replace(tzinfo=UTC)
@@ -284,8 +356,10 @@ def fold_ics_line(line: str) -> str:
     """Fold iCalendar lines to a conservative length."""
     max_len = 73
     out = []
+
     while len(line.encode("utf-8")) > max_len:
         cut = max_len
+
         # Avoid splitting multibyte chars by backing off until valid.
         while True:
             try:
@@ -293,16 +367,22 @@ def fold_ics_line(line: str) -> str:
                 break
             except UnicodeDecodeError:
                 cut -= 1
+
         out.append(head)
         line = line[len(head):]
         line = " " + line
+
     out.append(line)
     return "\r\n".join(out)
 
 
 def ics_escape(text: str) -> str:
+    clean_text = html.unescape(text or "").replace("\r\n", "\n").replace("\r", "\n")
+    clean_lines = [normalise(line) for line in clean_text.split("\n")]
+    clean_text = "\n".join(clean_lines)
+
     return (
-        normalise(text)
+        clean_text
         .replace("\\", "\\\\")
         .replace(";", "\\;")
         .replace(",", "\\,")
@@ -344,8 +424,15 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
         if ev.description:
             desc_parts.append(ev.description)
 
+        explainer = release_explainer_for(ev.title)
+        if explainer:
+            desc_parts.append("")
+            desc_parts.append("Explainer:")
+            desc_parts.append(explainer)
+
         if ev.url:
-            desc_parts.append(ev.url)
+            desc_parts.append("")
+            desc_parts.append(f"Official source: {ev.url}")
 
         lines.extend(
             [
@@ -405,6 +492,7 @@ def unfold_ics(text: str) -> list[str]:
     for line in raw_lines:
         if not line:
             continue
+
         if line.startswith((" ", "\t")) and lines:
             lines[-1] += line[1:]
         else:
