@@ -330,18 +330,18 @@ def release_explainer_for(title: str) -> str | None:
         return None
 
     parts = [
-        f"What it is: {explainer['name']}",
-        f"Measures: {explainer['measures']}",
-        f"Usual market effect: {explainer['usual_effect']}",
-        f"Why traders care: {explainer['why_traders_care']}",
-        f"Frequency: {explainer['frequency']}",
+        f"• What it is: {explainer['name']}",
+        f"• Measures: {explainer['measures']}",
+        f"• Usual market effect: {explainer['usual_effect']}",
+        f"• Why traders care: {explainer['why_traders_care']}",
+        f"• Frequency: {explainer['frequency']}",
     ]
 
     if explainer.get("notes"):
-        parts.append(f"Notes: {explainer['notes']}")
+        parts.append(f"• Notes: {explainer['notes']}")
 
     if explainer.get("acronyms"):
-        parts.append(f"Acronyms: {explainer['acronyms']}")
+        parts.append(f"• Acronyms: {explainer['acronyms']}")
 
     return "\n\n".join(parts)
 
