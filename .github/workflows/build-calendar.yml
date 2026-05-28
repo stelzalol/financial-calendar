@@ -3,7 +3,28 @@ name: Build Financial Calendar
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 20 * * *"
+    # AU ABS major releases: approx 11:35am Brisbane / Canberra release window
+    - cron: "35 1 * * *"
+
+    # AU RBA decision window:
+    # 03:35 UTC catches Sydney daylight-saving period
+    # 04:35 UTC catches Sydney/Brisbane standard-time period
+    - cron: "35 3 * * 1-5"
+    - cron: "35 4 * * 1-5"
+
+    # US major 8:30am ET releases: CPI, PPI, NFP, GDP, PCE, Retail Sales
+    # 12:35 UTC = US daylight-saving period
+    # 13:35 UTC = US standard-time period
+    - cron: "35 12 * * 1-5"
+    - cron: "35 13 * * 1-5"
+
+    # US 10:00am ET releases: ISM, JOLTS, New Home Sales, etc.
+    - cron: "5 14 * * 1-5"
+    - cron: "5 15 * * 1-5"
+
+    # FOMC 2:00pm / 2:30pm ET statement + press conference windows
+    - cron: "5,35 18 * * 1-5"
+    - cron: "5,35 19 * * 1-5"
 
 permissions:
   contents: write
