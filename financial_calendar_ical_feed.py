@@ -343,7 +343,7 @@ def release_explainer_for(title: str) -> str | None:
     if explainer.get("acronyms"):
         parts.append(f"Acronyms: {explainer['acronyms']}")
 
-    return "\n".join(parts)
+    return "\n\n".join(parts)
 
 
 def ensure_utc(dt: datetime) -> datetime:
