@@ -893,10 +893,10 @@ def collect_events() -> list[MacroEvent]:
     events = [e for e in events if ensure_utc(e.start) >= cutoff]
 
     # Final filter + sort.
-events = [e for e in events if is_market_event(e.title)]
-events = [e for e in events if e.impact == "high"]
+    events = [e for e in events if is_market_event(e.title)]
+    events = [e for e in events if e.impact == "high"]
 
-return sorted(events, key=lambda e: e.start)
+    return sorted(events, key=lambda e: e.start)
 
 def build_file() -> Path:
     events = collect_events()
