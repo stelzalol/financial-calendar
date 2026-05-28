@@ -3,7 +3,7 @@ Financial Macro Calendar -> iCal feed
 
 MVP goal:
 - Pull official US release calendars where possible.
-- Pull Australian ABS/RBA release pages. 
+- Pull Australian ABS/RBA release pages.
 - Filter to market-moving macro keywords.
 - Output a single .ics file you can subscribe to in Apple Calendar / Google Calendar / Outlook.
 
@@ -77,6 +77,7 @@ MARKET_KEYWORDS = [
     "import price",
     "export price",
     "wage price",
+
     # Growth / spending / activity
     "gdp",
     "gross domestic product",
@@ -93,6 +94,7 @@ MARKET_KEYWORDS = [
     "international trade",
     "balance of payments",
     "national accounts",
+
     # Jobs
     "employment situation",
     "nonfarm",
@@ -103,6 +105,7 @@ MARKET_KEYWORDS = [
     "labour force",
     "labor force",
     "average weekly earnings",
+
     # Central banks
     "monetary policy",
     "interest rate",
@@ -133,6 +136,97 @@ HIGH_IMPACT_TERMS = [
     "cash rate",
     "interest rate",
 ]
+
+
+# ----------------------------
+# RELEASE EXPLAINERS
+# ----------------------------
+# These are our own Forex Factory-style explainers.
+# They are written for trader context and are not copied from Forex Factory.
+
+RELEASE_EXPLAINERS = {
+    "core_pce": {
+        "name": "Core PCE Price Index",
+        "source": "US Bureau of Economic Analysis",
+        "measures": "Change in prices paid by consumers for goods and services, excluding food and energy.",
+        "usual_effect": "Higher-than-forecast inflation is usually bullish for USD and bearish for bonds, because it can increase expectations of tighter Federal Reserve policy.",
+        "frequency": "Monthly, usually released about four weeks after the month ends.",
+        "why_traders_care": "Core PCE is one of the Federal Reserve's preferred inflation measures, so it can strongly influence interest-rate expectations.",
+        "notes": "Core PCE differs from Core CPI because it uses a different basket and weighting method. CPI often gets more immediate market attention, but Core PCE is very important for Fed policy.",
+        "acronyms": "PCE = Personal Consumption Expenditures; CPI = Consumer Price Index.",
+    },
+    "cpi": {
+        "name": "Consumer Price Index",
+        "source": "BLS / ABS depending on country",
+        "measures": "Change in the prices paid by consumers for a basket of goods and services.",
+        "usual_effect": "Higher-than-forecast inflation is usually bullish for the local currency and bearish for bonds, because markets may price in higher interest rates.",
+        "frequency": "US CPI is monthly. Australian CPI has both monthly indicator releases and quarterly CPI releases.",
+        "why_traders_care": "CPI is one of the most watched inflation indicators because it can quickly shift central-bank rate expectations.",
+        "notes": "Core CPI removes volatile items such as food and energy to give a cleaner read on underlying inflation pressure.",
+        "acronyms": "CPI = Consumer Price Index.",
+    },
+    "ppi": {
+        "name": "Producer Price Index",
+        "source": "US Bureau of Labor Statistics",
+        "measures": "Change in prices received by producers for goods and services.",
+        "usual_effect": "Higher-than-forecast PPI can be bullish for USD if traders expect producer inflation to flow through to consumer inflation.",
+        "frequency": "Monthly.",
+        "why_traders_care": "PPI can provide an early signal of inflation pressure before it reaches consumers.",
+        "notes": "PPI is usually less market-moving than CPI, but it can still matter when inflation is the main macro theme.",
+        "acronyms": "PPI = Producer Price Index.",
+    },
+    "employment": {
+        "name": "Employment / Payrolls / Labour Force",
+        "source": "BLS / ABS depending on country",
+        "measures": "Change in employment, unemployment, participation and labour-market strength.",
+        "usual_effect": "Stronger-than-forecast jobs data is usually bullish for the local currency and bearish for bonds if it increases rate-hike expectations.",
+        "frequency": "Monthly.",
+        "why_traders_care": "Jobs data is a major driver of interest-rate expectations, consumer spending expectations and recession-risk pricing.",
+        "notes": "For the US, Non-Farm Payrolls is one of the most market-moving releases. For Australia, Labour Force data is important for RBA expectations.",
+        "acronyms": "NFP = Non-Farm Payrolls; ABS = Australian Bureau of Statistics; BLS = Bureau of Labor Statistics.",
+    },
+    "gdp": {
+        "name": "Gross Domestic Product",
+        "source": "BEA / ABS depending on country",
+        "measures": "Broad change in the value of goods and services produced by the economy.",
+        "usual_effect": "Stronger-than-forecast GDP can be bullish for the local currency and equities, although the reaction depends on inflation and rate expectations.",
+        "frequency": "Quarterly, with revisions.",
+        "why_traders_care": "GDP is the broadest measure of economic growth and helps traders judge whether the economy is accelerating or slowing.",
+        "notes": "GDP can be backward-looking, so markets often react more strongly when the result changes the outlook for central-bank policy or recession risk.",
+        "acronyms": "GDP = Gross Domestic Product.",
+    },
+    "retail_sales": {
+        "name": "Retail Sales / Retail Trade",
+        "source": "Census / ABS depending on country",
+        "measures": "Change in retail spending by consumers.",
+        "usual_effect": "Stronger-than-forecast retail sales can be bullish for the local currency and consumer-related equities if it suggests resilient demand.",
+        "frequency": "Monthly.",
+        "why_traders_care": "Consumer spending is a major part of economic activity, so retail data can influence growth and rate expectations.",
+        "notes": "Retail sales can be volatile month to month. Traders often compare the result with inflation, jobs and wages data.",
+        "acronyms": "ABS = Australian Bureau of Statistics.",
+    },
+    "central_bank": {
+        "name": "Central Bank Rate Decision",
+        "source": "Federal Reserve / Reserve Bank of Australia",
+        "measures": "Interest-rate decision, policy statement and guidance from the central bank.",
+        "usual_effect": "More hawkish-than-expected guidance is usually bullish for the local currency and bearish for bonds. More dovish-than-expected guidance is usually bearish for the currency and bullish for bonds.",
+        "frequency": "Scheduled several times per year.",
+        "why_traders_care": "Central-bank decisions directly affect interest rates, currency valuation, bond yields and equity risk appetite.",
+        "notes": "The market often reacts not only to the rate decision, but also to the statement, forecasts, press conference and tone.",
+        "acronyms": "FOMC = Federal Open Market Committee; RBA = Reserve Bank of Australia.",
+    },
+    "wages": {
+        "name": "Wage Price Index / Average Earnings",
+        "source": "ABS / BLS depending on country",
+        "measures": "Change in wages and earnings.",
+        "usual_effect": "Higher-than-forecast wage growth can be bullish for the local currency if traders expect stronger inflation pressure and tighter central-bank policy.",
+        "frequency": "Monthly or quarterly depending on release.",
+        "why_traders_care": "Wage growth can feed into inflation and is closely watched by central banks.",
+        "notes": "Strong wages can be positive for consumers but can also increase inflation pressure.",
+        "acronyms": "WPI = Wage Price Index.",
+    },
+}
+
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 macro-calendar-builder/1.0 (+personal-use)",
@@ -192,7 +286,7 @@ def fold_ics_line(line: str) -> str:
     out = []
     while len(line.encode("utf-8")) > max_len:
         cut = max_len
-        # avoid splitting multibyte chars by backing off until valid
+        # Avoid splitting multibyte chars by backing off until valid.
         while True:
             try:
                 head = line.encode("utf-8")[:cut].decode("utf-8")
@@ -241,12 +335,15 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
         end = ensure_utc(ev.end) if ev.end else start + timedelta(minutes=30)
         summary_prefix = "🔥 " if ev.impact == "high" else "📊 "
         summary = f"{summary_prefix}{ev.source}: {ev.title}"
+
         desc_parts = [
             f"Source: {ev.source}",
             f"Impact: {ev.impact}",
         ]
+
         if ev.description:
             desc_parts.append(ev.description)
+
         if ev.url:
             desc_parts.append(ev.url)
 
@@ -258,7 +355,7 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
                 f"DTSTART:{format_ics_datetime(start)}",
                 f"DTEND:{format_ics_datetime(end)}",
                 f"SUMMARY:{ics_escape(summary)}",
-               "DESCRIPTION:" + ics_escape("\n".join(desc_parts)),
+                "DESCRIPTION:" + ics_escape("\n".join(desc_parts)),
                 "STATUS:CONFIRMED",
                 "TRANSP:TRANSPARENT",
             ]
@@ -298,12 +395,13 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
 
 
 # ----------------------------
-# ICS source parsing: BLS / BEA
+# ICS source parsing: BEA
 # ----------------------------
 
 def unfold_ics(text: str) -> list[str]:
     raw_lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
     lines: list[str] = []
+
     for line in raw_lines:
         if not line:
             continue
@@ -311,17 +409,20 @@ def unfold_ics(text: str) -> list[str]:
             lines[-1] += line[1:]
         else:
             lines.append(line)
+
     return lines
 
 
 def parse_ics_datetime(line: str, fallback_tz: ZoneInfo = UTC) -> datetime | None:
     if ":" not in line:
         return None
+
     key, value = line.split(":", 1)
     value = value.strip()
 
     tz = fallback_tz
     m = re.search(r"TZID=([^;:]+)", key)
+
     if m:
         try:
             tz = ZoneInfo(m.group(1))
@@ -331,9 +432,12 @@ def parse_ics_datetime(line: str, fallback_tz: ZoneInfo = UTC) -> datetime | Non
     try:
         if "VALUE=DATE" in key or re.fullmatch(r"\d{8}", value):
             return datetime.strptime(value[:8], "%Y%m%d").replace(tzinfo=tz)
+
         if value.endswith("Z"):
             return datetime.strptime(value, "%Y%m%dT%H%M%SZ").replace(tzinfo=UTC)
+
         return datetime.strptime(value[:15], "%Y%m%dT%H%M%S").replace(tzinfo=tz)
+
     except Exception:
         return None
 
@@ -341,15 +445,19 @@ def parse_ics_datetime(line: str, fallback_tz: ZoneInfo = UTC) -> datetime | Non
 def parse_ics_duration(value: str) -> timedelta:
     # Simple support for PT30M, PT1H, P1D etc.
     days = hours = minutes = 0
+
     m = re.search(r"(\d+)D", value)
     if m:
         days = int(m.group(1))
+
     m = re.search(r"(\d+)H", value)
     if m:
         hours = int(m.group(1))
+
     m = re.search(r"(\d+)M", value)
     if m:
         minutes = int(m.group(1))
+
     return timedelta(days=days, hours=hours, minutes=minutes)
 
 
@@ -364,6 +472,7 @@ def parse_source_ics(ics_text: str, source: str, source_url: str) -> list[MacroE
             in_event = True
             current = {}
             continue
+
         if line == "END:VEVENT" and in_event:
             title = current.get("SUMMARY", "").replace("\\,", ",")
             start_line = current.get("DTSTART")
@@ -373,6 +482,7 @@ def parse_source_ics(ics_text: str, source: str, source_url: str) -> list[MacroE
 
             start = parse_ics_datetime(start_line or "", US_EASTERN)
             end = parse_ics_datetime(end_line or "", US_EASTERN) if end_line else None
+
             if start and not end and duration:
                 end = start + parse_ics_duration(duration)
 
@@ -388,6 +498,7 @@ def parse_source_ics(ics_text: str, source: str, source_url: str) -> list[MacroE
                         impact=impact_for(title),
                     )
                 )
+
             in_event = False
             current = {}
             continue
@@ -402,12 +513,14 @@ def parse_source_ics(ics_text: str, source: str, source_url: str) -> list[MacroE
 
 def fetch_official_ics_events() -> list[MacroEvent]:
     events: list[MacroEvent] = []
+
     for source, url in OFFICIAL_ICS_SOURCES.items():
         try:
             text = fetch_text(url)
             events.extend(parse_source_ics(text, source, url))
         except Exception as e:
             print(f"Warning: failed to fetch {source}: {e}")
+
     return events
 
 
@@ -421,43 +534,58 @@ def month_urls_from_abs_index() -> list[str]:
         text = fetch_text(ABS_BASE)
         soup = BeautifulSoup(text, "html.parser")
         urls = {ABS_BASE}
+
         for a in soup.find_all("a", href=True):
             href = a["href"]
+
             if "/release-calendar/future-releases/" in href:
                 if href.startswith("http"):
                     urls.add(href)
                 else:
                     urls.add("https://www.abs.gov.au" + href)
+
         return sorted(urls)
+
     except Exception as e:
         print(f"Warning: failed to discover ABS month URLs: {e}")
+
         # Fallback: current month + next 5 months.
         today = datetime.now(AU_SYDNEY).date().replace(day=1)
         urls = [ABS_BASE]
+
         for i in range(1, 6):
             ym = (today + relativedelta(months=i)).strftime("%Y%m")
             urls.append(f"{ABS_BASE}/{ym}")
+
         return urls
 
 
 def parse_abs_datetime(line: str) -> datetime | None:
     # Example: Wednesday 27 May 2026 11:30am AEST | Updated information
     clean = normalise(line).replace("| Updated information", "")
+
     pattern = (
         r"^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) "
         r"(\d{1,2} [A-Za-z]+ \d{4}) "
         r"(\d{1,2}:\d{2})(am|pm) "
         r"([A-Z]{3,4})"
     )
+
     m = re.match(pattern, clean)
+
     if not m:
         return None
+
     date_part = m.group(2)
     time_part = m.group(3) + m.group(4).upper()
+
     try:
         naive = datetime.strptime(f"{date_part} {time_part}", "%d %B %Y %I:%M%p")
-        # ABS says release-calendar times are Canberra time. Sydney zone handles AEST/AEDT transitions.
+
+        # ABS says release-calendar times are Canberra time.
+        # Sydney zone handles AEST/AEDT transitions.
         return naive.replace(tzinfo=AU_SYDNEY)
+
     except Exception:
         return None
 
@@ -470,28 +598,36 @@ def parse_abs_page(text: str, url: str) -> list[MacroEvent]:
 
     for i, line in enumerate(lines):
         start = parse_abs_datetime(line)
+
         if not start:
             continue
 
         # The title is normally the next meaningful line after the date/time line.
         title = None
+
         for j in range(i + 1, min(i + 8, len(lines))):
             candidate = lines[j].lstrip("# ").strip()
+
             if not candidate:
                 continue
+
             if candidate.lower().startswith(("reference period", "view current release")):
                 continue
+
             if candidate.lower() in {"choose month", "choose theme", "add month to your calendar"}:
                 continue
+
             title = candidate
             break
 
         if title and is_market_event(title):
             ref_period = ""
+
             for j in range(i + 1, min(i + 12, len(lines))):
                 if lines[j].lower().startswith("reference period"):
                     ref_period = lines[j]
                     break
+
             events.append(
                 MacroEvent(
                     source="AU ABS",
@@ -503,17 +639,20 @@ def parse_abs_page(text: str, url: str) -> list[MacroEvent]:
                     impact=impact_for(title),
                 )
             )
+
     return events
 
 
 def fetch_abs_events() -> list[MacroEvent]:
     events: list[MacroEvent] = []
+
     for url in month_urls_from_abs_index():
         try:
             text = fetch_text(url)
             events.extend(parse_abs_page(text, url))
         except Exception as e:
             print(f"Warning: failed to fetch ABS page {url}: {e}")
+
     return events
 
 
@@ -526,25 +665,31 @@ def parse_rba_datetime(line: str) -> datetime | None:
     # 13 October 2026 11.30 am AEDT
     # 3 November 2026 2.30 pm AEDT
     clean = normalise(line).replace("\u00a0", " ")
+
     m = re.search(
         r"(\d{1,2} [A-Za-z]+ \d{4})\s+"
         r"(\d{1,2})[.:](\d{2})\s*(am|pm)\s*([A-Z]{3,4})",
         clean,
         flags=re.IGNORECASE,
     )
+
     if not m:
         return None
+
     date_part = m.group(1)
     time_part = f"{m.group(2)}:{m.group(3)}{m.group(4).upper()}"
+
     try:
         naive = datetime.strptime(f"{date_part} {time_part}", "%d %B %Y %I:%M%p")
         return naive.replace(tzinfo=AU_SYDNEY)
+
     except Exception:
         return None
 
 
 def fetch_rba_events() -> list[MacroEvent]:
     events: list[MacroEvent] = []
+
     try:
         text = fetch_text(RBA_COMING_UP)
         soup = BeautifulSoup(text, "html.parser")
@@ -553,14 +698,19 @@ def fetch_rba_events() -> list[MacroEvent]:
 
         for i, line in enumerate(lines):
             title = line
+
             if not is_market_event(title):
                 continue
+
             # Find date/time in the next few lines, because RBA often puts the event title first.
             start = None
+
             for j in range(i + 1, min(i + 6, len(lines))):
                 start = parse_rba_datetime(lines[j])
+
                 if start:
                     break
+
             if start:
                 events.append(
                     MacroEvent(
@@ -573,8 +723,10 @@ def fetch_rba_events() -> list[MacroEvent]:
                         impact=impact_for(title),
                     )
                 )
+
     except Exception as e:
         print(f"Warning: failed to fetch RBA events: {e}")
+
     return events
 
 
@@ -585,6 +737,7 @@ def fetch_rba_events() -> list[MacroEvent]:
 def fetch_fomc_events() -> list[MacroEvent]:
     """Lightweight FOMC parser. Treats second day of meeting as the policy decision day at 2pm New York time."""
     events: list[MacroEvent] = []
+
     try:
         text = fetch_text(FED_FOMC)
         soup = BeautifulSoup(text, "html.parser")
@@ -592,21 +745,31 @@ def fetch_fomc_events() -> list[MacroEvent]:
 
         # Matches like: January 27-28 or September 15-16*
         current_year = datetime.now(US_EASTERN).year
+
         for year in [current_year, current_year + 1]:
             if str(year) not in page_text:
                 continue
+
             # Restrict to a rough window after the year mention.
             y_idx = page_text.find(str(year))
-            section = page_text[y_idx : y_idx + 2500]
+            section = page_text[y_idx: y_idx + 2500]
+
             for m in re.finditer(
                 r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})[-–](\d{1,2})(\*)?",
                 section,
             ):
                 month_name, day1, day2, sep = m.groups()
-                dt = datetime.strptime(f"{day2} {month_name} {year} 2:00PM", "%d %B %Y %I:%M%p").replace(tzinfo=US_EASTERN)
+
+                dt = datetime.strptime(
+                    f"{day2} {month_name} {year} 2:00PM",
+                    "%d %B %Y %I:%M%p",
+                ).replace(tzinfo=US_EASTERN)
+
                 title = "FOMC Interest Rate Decision"
+
                 if sep:
                     title += " + Summary of Economic Projections"
+
                 events.append(
                     MacroEvent(
                         source="US Fed",
@@ -618,8 +781,10 @@ def fetch_fomc_events() -> list[MacroEvent]:
                         impact="high",
                     )
                 )
+
     except Exception as e:
         print(f"Warning: failed to fetch FOMC events: {e}")
+
     return events
 
 
@@ -629,6 +794,7 @@ def fetch_fomc_events() -> list[MacroEvent]:
 
 def collect_events() -> list[MacroEvent]:
     events: list[MacroEvent] = []
+
     events.extend(fetch_official_ics_events())
     events.extend(fetch_abs_events())
     events.extend(fetch_rba_events())
@@ -638,8 +804,9 @@ def collect_events() -> list[MacroEvent]:
     cutoff = datetime.now(UTC) - timedelta(days=1)
     events = [e for e in events if ensure_utc(e.start) >= cutoff]
 
-    # Final filter + sort
+    # Final filter + sort.
     events = [e for e in events if is_market_event(e.title)]
+
     return sorted(events, key=lambda e: e.start)
 
 
@@ -666,10 +833,12 @@ def serve() -> None:
     def macro_calendar():
         now = datetime.now(UTC)
         last_ts = last_build.get("ts")
+
         if not last_ts or (now - last_ts).total_seconds() > CACHE_SECONDS:
             events = collect_events()
             last_build["ics"] = build_ics(events)
             last_build["ts"] = now
+
         return Response(
             last_build["ics"],
             mimetype="text/calendar",
