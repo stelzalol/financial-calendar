@@ -898,7 +898,6 @@ events = [e for e in events if e.impact == "high"]
 
 return sorted(events, key=lambda e: e.start)
 
-
 def build_file() -> Path:
     events = collect_events()
     ics = build_ics(events)
