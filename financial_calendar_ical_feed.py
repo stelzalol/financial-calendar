@@ -63,6 +63,17 @@ OFFICIAL_ICS_SOURCES = {
 ABS_BASE = "https://www.abs.gov.au/release-calendar/future-releases"
 RBA_COMING_UP = "https://www.rba.gov.au/coming-up/"
 
+# Dedicated ABS series pages for important Australian financial releases.
+# These help retain/recover dates after a release drops out of the general
+# future-release calendar.
+ABS_CORE_SERIES = {
+    "Australian National Accounts: National Income, Expenditure and Product": "https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product",
+    "Consumer Price Index, Australia": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia",
+    "Labour Force, Australia": "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia",
+    "Wage Price Index, Australia": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/wage-price-index-australia",
+    "Producer Price Indexes, Australia": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia",
+}
+
 # Kept for source reference / future use.
 FED_FOMC = "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
 
@@ -494,6 +505,129 @@ def ics_escape(text: str) -> str:
     )
 
 
+def ics_unescape(text: str) -> str:
+    """Unescape the limited iCalendar escaping used by this script."""
+    return (
+        (text or "")
+        .replace("\\n", "\n")
+        .replace("\\,", ",")
+        .replace("\\;", ";")
+        .replace("\\\\", "\\")
+    )
+
+
+def summary_to_source_title(summary: str) -> tuple[str, str]:
+    clean = normalise(summary)
+    clean = re.sub(r"^[🔥📊\s]+", "", clean).strip()
+
+    if ":" in clean:
+        source, title = clean.split(":", 1)
+        return normalise(source), normalise(title)
+
+    return "Unknown", clean
+
+
+def parse_existing_calendar_events(path: Path = OUTPUT_FILE) -> list[MacroEvent]:
+    """
+    Read the already-generated .ics file and keep prior events.
+
+    This prevents official releases from disappearing after source websites move
+    them from a future-release page to a latest-release/archive page.
+    """
+    if not path.exists():
+        return []
+
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception as e:
+        print(f"Warning: failed to read existing calendar {path}: {e}")
+        return []
+
+    lines = unfold_ics(text)
+    events: list[MacroEvent] = []
+    in_event = False
+    in_alarm = False
+    current: dict[str, str] = {}
+
+    for line in lines:
+        if line == "BEGIN:VEVENT":
+            in_event = True
+            in_alarm = False
+            current = {}
+            continue
+
+        if line == "END:VEVENT" and in_event:
+            summary = ics_unescape(current.get("SUMMARY", ""))
+            source, title = summary_to_source_title(summary)
+            start = parse_ics_datetime(current.get("DTSTART", ""), UTC)
+            end = parse_ics_datetime(current.get("DTEND", ""), UTC)
+            description = ics_unescape(current.get("DESCRIPTION", ""))
+
+            impact = impact_for(title)
+            m = re.search(r"Impact:\s*(high|medium|low)", description, flags=re.IGNORECASE)
+            if m:
+                impact = m.group(1).lower()
+
+            url = None
+            m = re.search(r"Official source:\s*(https?://\S+)", description)
+            if m:
+                url = m.group(1)
+
+            if start and title:
+                events.append(
+                    MacroEvent(
+                        source=source,
+                        title=title,
+                        start=start,
+                        end=end,
+                        url=url,
+                        description=description,
+                        impact=impact,
+                    )
+                )
+
+            in_event = False
+            in_alarm = False
+            current = {}
+            continue
+
+        if in_event and line == "BEGIN:VALARM":
+            in_alarm = True
+            continue
+
+        if in_event and line == "END:VALARM":
+            in_alarm = False
+            continue
+
+        if in_event and not in_alarm and ":" in line:
+            key, value = line.split(":", 1)
+            base_key = key.split(";", 1)[0]
+            if base_key in {"SUMMARY", "DESCRIPTION", "DTSTART", "DTEND"}:
+                current[base_key] = line if base_key in {"DTSTART", "DTEND"} else value
+
+    return events
+
+
+def current_year_start_utc() -> datetime:
+    local_start = datetime(datetime.now(AU_SYDNEY).year, 1, 1, tzinfo=AU_SYDNEY)
+    return local_start.astimezone(UTC)
+
+
+def dedupe_events(events: Iterable[MacroEvent]) -> list[MacroEvent]:
+    """Remove duplicates while preferring freshly fetched events over retained ones."""
+    deduped: dict[tuple[str, str, str], MacroEvent] = {}
+
+    for ev in events:
+        key = (
+            ev.source.lower(),
+            normalise(ev.title).lower(),
+            format_ics_datetime(ev.start),
+        )
+        deduped[key] = ev
+
+    return sorted(deduped.values(), key=lambda e: e.start)
+
+
 def format_ics_datetime(dt: datetime) -> str:
     return ensure_utc(dt).strftime("%Y%m%dT%H%M%SZ")
 
@@ -773,6 +907,75 @@ def parse_abs_datetime(line: str) -> datetime | None:
 
     except Exception:
         return None
+
+
+def parse_abs_release_datetime(date_part: str, time_part: str, ampm: str, tz_abbr: str) -> datetime | None:
+    """Parse ABS release date format: 24/06/2026 11:30am AEST."""
+    try:
+        naive = datetime.strptime(
+            f"{date_part} {time_part}{ampm.upper()}",
+            "%d/%m/%Y %I:%M%p",
+        )
+        # ABS release times are Australian east-coast/capital-city times.
+        # Australia/Sydney handles AEST/AEDT transitions for the stated date.
+        return naive.replace(tzinfo=AU_SYDNEY)
+    except Exception:
+        return None
+
+
+def parse_abs_core_series_page(title_base: str, text: str, url: str) -> list[MacroEvent]:
+    """
+    Parse important ABS series pages that list Latest/Future release dates.
+
+    These pages are more stable for core releases than relying only on the
+    generic future-release calendar.
+    """
+    soup = BeautifulSoup(text, "html.parser")
+    page_text = normalise(soup.get_text(" "))
+    events: list[MacroEvent] = []
+
+    escaped_title = re.escape(title_base)
+    pattern = re.compile(
+        rf"({escaped_title},\s*[^R]{{1,80}}?)\s+Release date\s+"
+        r"(\d{2}/\d{2}/\d{4})\s+"
+        r"(\d{1,2}:\d{2})(am|pm)\s+"
+        r"([A-Z]{3,4})",
+        flags=re.IGNORECASE,
+    )
+
+    for m in pattern.finditer(page_text):
+        title = normalise(m.group(1))
+        start = parse_abs_release_datetime(m.group(2), m.group(3), m.group(4), m.group(5))
+
+        if not start:
+            continue
+
+        events.append(
+            MacroEvent(
+                source="AU ABS",
+                title=title,
+                start=start,
+                end=start + timedelta(minutes=30),
+                url=url,
+                description=f"Official ABS series page release date. Time zone shown by ABS: {m.group(5)}.",
+                impact=impact_for(title),
+            )
+        )
+
+    return events
+
+
+def fetch_abs_core_series_events() -> list[MacroEvent]:
+    events: list[MacroEvent] = []
+
+    for title_base, url in ABS_CORE_SERIES.items():
+        try:
+            text = fetch_text(url)
+            events.extend(parse_abs_core_series_page(title_base, text, url))
+        except Exception as e:
+            print(f"Warning: failed to fetch ABS core series {title_base}: {e}")
+
+    return events
 
 
 def parse_abs_page(text: str, url: str) -> list[MacroEvent]:
@@ -1059,20 +1262,40 @@ def fetch_fomc_events() -> list[MacroEvent]:
 # ----------------------------
 
 def collect_events() -> list[MacroEvent]:
-    events: list[MacroEvent] = []
+    newly_fetched: list[MacroEvent] = []
 
-    events.extend(fetch_official_ics_events())
-    events.extend(fetch_abs_events())
-    events.extend(fetch_rba_events())
-    events.extend(fetch_fomc_events())
+    newly_fetched.extend(fetch_official_ics_events())
+    newly_fetched.extend(fetch_abs_events())
+    newly_fetched.extend(fetch_abs_core_series_events())
+    newly_fetched.extend(fetch_rba_events())
+    newly_fetched.extend(fetch_fomc_events())
 
-    cutoff = datetime.now(UTC) - timedelta(days=1)
-    events = [e for e in events if ensure_utc(e.start) >= cutoff]
+    # Retain existing current-year events so releases do not disappear after
+    # source websites move them from future-release pages to latest/archive pages.
+    retained = parse_existing_calendar_events(OUTPUT_FILE)
 
-    # Final strict filter.
+    cutoff = current_year_start_utc()
+    events = [e for e in retained + newly_fetched if ensure_utc(e.start) >= cutoff]
+
+    # Final strict filter. This also prevents old false positives from being retained.
     events = [e for e in events if is_core_high_impact_release(e.title)]
 
-    return sorted(events, key=lambda e: e.start)
+    # Ensure all retained/fetched events are treated as high impact once they pass
+    # the strict public-feed whitelist.
+    events = [
+        MacroEvent(
+            source=e.source,
+            title=e.title,
+            start=e.start,
+            end=e.end,
+            url=e.url,
+            description=e.description,
+            impact="high",
+        )
+        for e in events
+    ]
+
+    return dedupe_events(events)
 
 
 def build_file() -> Path:
