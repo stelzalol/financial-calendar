@@ -292,13 +292,55 @@ def impact_for(title: str) -> str:
     return "high" if any(k in t for k in HIGH_IMPACT_TERMS) else "medium"
 
 
+def release_family(title: str) -> str:
+    """
+    Normalised family key used for strict filtering and deduping.
+    """
+    t = title.lower()
+
+    if "fomc press conference" in t:
+        return "fomc_press_conference"
+
+    if "fomc" in t or "federal open market" in t:
+        return "fomc_rate_decision"
+
+    if "cash rate" in t or "monetary policy decision" in t or "statement on monetary policy" in t:
+        return "rba_policy"
+
+    if "personal income and outlays" in t or "pce price index" in t or "core pce" in t:
+        return "core_pce"
+
+    if "consumer price index" in t or re.search(r"\bcpi\b", t):
+        return "cpi"
+
+    if "producer price index" in t or "producer price indexes" in t or re.search(r"\bppi\b", t):
+        return "ppi"
+
+    if "labour force" in t or "labor force" in t or "employment situation" in t or "nonfarm" in t or "payroll" in t:
+        return "employment"
+
+    if "wage price index" in t or "average weekly earnings" in t:
+        return "wages"
+
+    if (
+        "australian national accounts" in t
+        and "national income, expenditure and product" in t
+    ):
+        return "au_gdp"
+
+    if "gdp" in t or "gross domestic product" in t:
+        return "us_gdp"
+
+    return re.sub(r"[^a-z0-9]+", "_", t).strip("_")
+
+
 def is_core_high_impact_release(title: str) -> bool:
     """
     Strict whitelist for the final public calendar feed.
 
     This keeps the main market-moving releases and removes broad false positives
     like regional GDP, finance/wealth national accounts, system-of-accounts
-    publications, and labour-force participation feature releases.
+    publications, labour-force participation feature releases, etc.
     """
     t = title.lower()
 
@@ -328,107 +370,81 @@ def is_core_high_impact_release(title: str) -> bool:
     if any(x in t for x in excluded_phrases):
         return False
 
-    # Central bank releases.
-    if "fomc interest rate decision" in t:
-        return True
+    return release_family(title) in {
+        "fomc_rate_decision",
+        "fomc_press_conference",
+        "rba_policy",
+        "au_gdp",
+        "us_gdp",
+        "core_pce",
+        "cpi",
+        "ppi",
+        "employment",
+        "wages",
+    }
 
-    if "fomc press conference" in t:
-        return True
 
-    if "cash rate" in t or "monetary policy decision" in t:
-        return True
+def event_quality_score(ev: MacroEvent) -> int:
+    """
+    When duplicate events exist, keep the most useful version.
+    Usually this means the title that includes the reference period.
+    """
+    score = 0
+    t = ev.title.lower()
 
-    if "statement on monetary policy" in t:
-        return True
+    if ev.url:
+        score += 5
 
-    # Main Australian GDP release.
-    if (
-        "australian national accounts" in t
-        and "national income, expenditure and product" in t
+    if ev.description:
+        score += 3
+
+    if re.search(
+        r"\b(january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{4}\b",
+        t,
     ):
-        return True
+        score += 15
 
-    # Main US GDP releases from BEA.
-    if "gdp" in t and any(
+    if re.search(r"\b(1st|2nd|3rd|4th)\s+quarter\s+\d{4}\b", t):
+        score += 10
+
+    if ev.source == "AU ABS" and any(
         phrase in t
         for phrase in [
-            "advance estimate",
-            "second estimate",
-            "third estimate",
-            "final estimate",
+            "consumer price index, australia,",
+            "labour force, australia,",
+            "australian national accounts: national income, expenditure and product,",
+            "wage price index, australia,",
+            "producer price indexes, australia,",
         ]
     ):
-        return True
+        score += 20
 
-    if "gross domestic product" in t and "by " not in t:
-        return True
-
-    # Inflation.
-    if "consumer price index" in t or re.search(r"\bcpi\b", t):
-        return True
-
-    if "producer price index" in t or re.search(r"\bppi\b", t):
-        return True
-
-    if "pce price index" in t or "personal income and outlays" in t:
-        return True
-
-    # Jobs.
-    if t.startswith("labour force") or "labour force, australia" in t:
-        return True
-
-    if t.startswith("labor force") or "labor force, united states" in t:
-        return True
-
-    if "employment situation" in t or "nonfarm" in t or "payroll" in t:
-        return True
-
-    # Wages.
-    if "wage price index" in t or "average weekly earnings" in t:
-        return True
-
-    return False
+    score += min(len(ev.title), 120)
+    return score
 
 
 def release_explainer_key_for(title: str) -> str | None:
-    t = title.lower()
+    family = release_family(title)
 
-    if "core pce" in t or "pce price index" in t or "personal income and outlays" in t:
+    if family == "core_pce":
         return "core_pce"
 
-    if "consumer price" in t or re.search(r"\bcpi\b", t):
+    if family == "cpi":
         return "cpi"
 
-    if "producer price" in t or re.search(r"\bppi\b", t):
+    if family == "ppi":
         return "ppi"
 
-    if (
-        "employment situation" in t
-        or "nonfarm" in t
-        or "payroll" in t
-        or "labour force" in t
-        or "labor force" in t
-        or "unemployment" in t
-    ):
+    if family == "employment":
         return "employment"
 
-    if "gdp" in t or "gross domestic product" in t or "national accounts" in t:
+    if family in {"au_gdp", "us_gdp"}:
         return "gdp"
 
-    if "retail sales" in t or "retail trade" in t:
-        return "retail_sales"
-
-    if (
-        "fomc" in t
-        or "federal open market" in t
-        or "monetary policy" in t
-        or "interest rate" in t
-        or "cash rate" in t
-        or "statement on monetary policy" in t
-    ):
+    if family in {"fomc_rate_decision", "fomc_press_conference", "rba_policy"}:
         return "central_bank"
 
-    if "wage price" in t or "average weekly earnings" in t or "wages" in t:
+    if family == "wages":
         return "wages"
 
     return None
@@ -614,18 +630,30 @@ def current_year_start_utc() -> datetime:
 
 
 def dedupe_events(events: Iterable[MacroEvent]) -> list[MacroEvent]:
-    """Remove duplicates while preferring freshly fetched events over retained ones."""
-    deduped: dict[tuple[str, str, str], MacroEvent] = {}
+    """
+    Remove duplicates caused by:
+    - ABS general future calendar + ABS series pages
+    - retained historical calendar + newly fetched event
+    - slightly different titles for same core event/time
+    """
+    best: dict[tuple[str, str, str], MacroEvent] = {}
 
     for ev in events:
-        key = (
-            ev.source.lower(),
-            normalise(ev.title).lower(),
-            format_ics_datetime(ev.start),
-        )
-        deduped[key] = ev
+        if not is_core_high_impact_release(ev.title):
+            continue
 
-    return sorted(deduped.values(), key=lambda e: e.start)
+        key = (
+            ev.source.lower().strip(),
+            release_family(ev.title),
+            ensure_utc(ev.start).strftime("%Y-%m-%dT%H:%M"),
+        )
+
+        current = best.get(key)
+
+        if current is None or event_quality_score(ev) > event_quality_score(current):
+            best[key] = ev
+
+    return sorted(best.values(), key=lambda e: e.start)
 
 
 def format_ics_datetime(dt: datetime) -> str:
@@ -646,7 +674,7 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
         "X-PUBLISHED-TTL:PT6H",
     ]
 
-    deduped = sorted(set(events), key=lambda e: e.start)
+    deduped = dedupe_events(events)
 
     for ev in deduped:
         start = ensure_utc(ev.start)
@@ -909,43 +937,64 @@ def parse_abs_datetime(line: str) -> datetime | None:
         return None
 
 
-def parse_abs_release_datetime(date_part: str, time_part: str, ampm: str, tz_abbr: str) -> datetime | None:
-    """Parse ABS release date format: 24/06/2026 11:30am AEST."""
+def parse_abs_release_datetime(value: str) -> datetime | None:
+    """
+    Parse ABS date/time strings like:
+    - 03/06/2026 11:30am AEST
+    - 2/09/2026 11:30am AEST
+    - 02/12/2026 11:30am AEDT
+    """
+    value = normalise(value)
+
+    m = re.search(
+        r"(\d{1,2}/\d{1,2}/\d{4})\s+(\d{1,2}:\d{2})(am|pm)\s+([A-Z]{3,4})",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if not m:
+        return None
+
+    date_part = m.group(1)
+    time_part = f"{m.group(2)}{m.group(3).upper()}"
+
     try:
-        naive = datetime.strptime(
-            f"{date_part} {time_part}{ampm.upper()}",
-            "%d/%m/%Y %I:%M%p",
-        )
-        # ABS release times are Australian east-coast/capital-city times.
-        # Australia/Sydney handles AEST/AEDT transitions for the stated date.
+        naive = datetime.strptime(f"{date_part} {time_part}", "%d/%m/%Y %I:%M%p")
+        # ABS release times are Canberra/Sydney time.
+        # AU_SYDNEY handles AEST/AEDT automatically for the given date.
         return naive.replace(tzinfo=AU_SYDNEY)
     except Exception:
         return None
 
 
-def parse_abs_core_series_page(title_base: str, text: str, url: str) -> list[MacroEvent]:
+def parse_abs_core_future_releases(title_base: str, text: str, url: str) -> list[MacroEvent]:
     """
-    Parse important ABS series pages that list Latest/Future release dates.
-
-    These pages are more stable for core releases than relying only on the
-    generic future-release calendar.
+    Parse important ABS series pages that list future release dates.
     """
     soup = BeautifulSoup(text, "html.parser")
-    page_text = normalise(soup.get_text(" "))
+    lines = [normalise(x) for x in soup.get_text("\n").split("\n")]
+    lines = [x for x in lines if x]
     events: list[MacroEvent] = []
 
-    escaped_title = re.escape(title_base)
-    pattern = re.compile(
-        rf"({escaped_title},\s*[^R]{{1,80}}?)\s+Release date\s+"
-        r"(\d{2}/\d{2}/\d{4})\s+"
-        r"(\d{1,2}:\d{2})(am|pm)\s+"
-        r"([A-Z]{3,4})",
-        flags=re.IGNORECASE,
-    )
+    for line in lines:
+        if title_base.lower() not in line.lower():
+            continue
 
-    for m in pattern.finditer(page_text):
-        title = normalise(m.group(1))
-        start = parse_abs_release_datetime(m.group(2), m.group(3), m.group(4), m.group(5))
+        if "release date" not in line.lower():
+            continue
+
+        m = re.search(
+            r"(?P<title>.+?)\s+Release date\s+"
+            r"(?P<dt>\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}(?:am|pm)\s+[A-Z]{3,4})",
+            line,
+            flags=re.IGNORECASE,
+        )
+
+        if not m:
+            continue
+
+        title = normalise(m.group("title"))
+        start = parse_abs_release_datetime(m.group("dt"))
 
         if not start:
             continue
@@ -957,10 +1006,102 @@ def parse_abs_core_series_page(title_base: str, text: str, url: str) -> list[Mac
                 start=start,
                 end=start + timedelta(minutes=30),
                 url=url,
-                description=f"Official ABS series page release date. Time zone shown by ABS: {m.group(5)}.",
+                description="Official ABS series page future release schedule",
                 impact=impact_for(title),
             )
         )
+
+    return events
+
+
+def find_abs_latest_release_url(text: str, base_url: str, title_base: str) -> str | None:
+    """
+    Find the first latest-release link from an ABS series page.
+    The latest-release link is normally the first release-specific link after the title.
+    """
+    soup = BeautifulSoup(text, "html.parser")
+    candidates: list[str] = []
+
+    for a in soup.find_all("a", href=True):
+        label = normalise(a.get_text(" "))
+
+        if not label.lower().startswith(title_base.lower()):
+            continue
+
+        href = a["href"]
+
+        if href.startswith("#"):
+            continue
+
+        full_url = href if href.startswith("http") else "https://www.abs.gov.au" + href
+
+        if full_url.rstrip("/") == base_url.rstrip("/"):
+            continue
+
+        candidates.append(full_url)
+
+    return candidates[0] if candidates else None
+
+
+def parse_abs_latest_release_page(url: str, title_base: str) -> MacroEvent | None:
+    """
+    Parse an ABS latest-release page.
+
+    This fixes same-day releases disappearing after they move from future release
+    to latest release, e.g. GDP/National Accounts on release day.
+    """
+    try:
+        text = fetch_text(url)
+    except Exception as e:
+        print(f"Warning: failed to fetch ABS latest release {url}: {e}")
+        return None
+
+    soup = BeautifulSoup(text, "html.parser")
+    plain = normalise(soup.get_text(" "))
+
+    ref_period = ""
+    m_ref = re.search(r"Reference period\s+(.+?)\s+Released", plain, flags=re.IGNORECASE)
+    if m_ref:
+        ref_period = normalise(m_ref.group(1))
+
+    m_dt = re.search(
+        r"Release date and time\s+"
+        r"(\d{1,2}/\d{1,2}/\d{4}\s+\d{1,2}:\d{2}(?:am|pm)\s+[A-Z]{3,4})",
+        plain,
+        flags=re.IGNORECASE,
+    )
+
+    if not m_dt:
+        return None
+
+    start = parse_abs_release_datetime(m_dt.group(1))
+
+    if not start:
+        return None
+
+    title = title_base
+    if ref_period:
+        title = f"{title_base}, {ref_period}"
+
+    return MacroEvent(
+        source="AU ABS",
+        title=title,
+        start=start,
+        end=start + timedelta(minutes=30),
+        url=url,
+        description="Official ABS latest release page",
+        impact=impact_for(title),
+    )
+
+
+def parse_abs_core_series_page(title_base: str, text: str, url: str) -> list[MacroEvent]:
+    events = parse_abs_core_future_releases(title_base, text, url)
+
+    latest_url = find_abs_latest_release_url(text, url, title_base)
+    if latest_url:
+        latest_event = parse_abs_latest_release_page(latest_url, title_base)
+        if latest_event:
+            events.append(latest_event)
 
     return events
 
@@ -1265,7 +1406,6 @@ def collect_events() -> list[MacroEvent]:
     newly_fetched: list[MacroEvent] = []
 
     newly_fetched.extend(fetch_official_ics_events())
-    newly_fetched.extend(fetch_abs_events())
     newly_fetched.extend(fetch_abs_core_series_events())
     newly_fetched.extend(fetch_rba_events())
     newly_fetched.extend(fetch_fomc_events())
