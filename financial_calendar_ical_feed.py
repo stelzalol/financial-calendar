@@ -18,7 +18,7 @@ Serve locally as a live feed:
     Then subscribe to: http://127.0.0.1:8000/macro-calendar.ics
 
 Suggested production hosting:
-- GitHub Actions scheduled daily -> writes docs/macro-calendar.ics -> GitHub Pages URL.
+- GitHub Actions scheduled daily -> writes macro-calendar.ics -> GitHub Pages URL.
 - Or a tiny VPS / Render / Railway Flask app.
 """
 
@@ -62,10 +62,12 @@ OFFICIAL_ICS_SOURCES = {
 
 ABS_BASE = "https://www.abs.gov.au/release-calendar/future-releases"
 RBA_COMING_UP = "https://www.rba.gov.au/coming-up/"
+
+# Kept for source reference / future use.
 FED_FOMC = "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
 
-# Add/remove terms here to tune the feed.
-# Keep this deliberately broad for v1, then tighten after checking the output.
+# Broad keyword list used to identify possible macro events from official source pages.
+# The final feed is tightened later by is_core_high_impact_release().
 MARKET_KEYWORDS = [
     # Inflation
     "cpi",
@@ -117,6 +119,8 @@ MARKET_KEYWORDS = [
     "minutes",
 ]
 
+# Broad high-impact hint list. This is used for icon/alert impact.
+# The final feed is tightened later by is_core_high_impact_release().
 HIGH_IMPACT_TERMS = [
     "cpi",
     "consumer price",
@@ -170,10 +174,10 @@ RELEASE_EXPLAINERS = {
     },
     "ppi": {
         "name": "Producer Price Index",
-        "source": "US Bureau of Labor Statistics",
+        "source": "US Bureau of Labor Statistics / ABS depending on country",
         "measures": "Change in prices received by producers for goods and services.",
-        "usual_effect": "Higher-than-forecast PPI can be bullish for USD if traders expect producer inflation to flow through to consumer inflation.",
-        "frequency": "Monthly.",
+        "usual_effect": "Higher-than-forecast PPI can be bullish for the local currency if traders expect producer inflation to flow through to consumer inflation.",
+        "frequency": "Monthly in the US. Quarterly in Australia.",
         "why_traders_care": "PPI can provide an early signal of inflation pressure before it reaches consumers.",
         "notes": "PPI is usually less market-moving than CPI, but it can still matter when inflation is the main macro theme.",
         "acronyms": "PPI = Producer Price Index.",
@@ -277,6 +281,104 @@ def impact_for(title: str) -> str:
     return "high" if any(k in t for k in HIGH_IMPACT_TERMS) else "medium"
 
 
+def is_core_high_impact_release(title: str) -> bool:
+    """
+    Strict whitelist for the final public calendar feed.
+
+    This keeps the main market-moving releases and removes broad false positives
+    like regional GDP, finance/wealth national accounts, system-of-accounts
+    publications, and labour-force participation feature releases.
+    """
+    t = title.lower()
+
+    excluded_phrases = [
+        "gdp by county",
+        "gdp by state",
+        "personal income by county",
+        "gross domestic product by county",
+        "gross domestic product by state",
+        "australian national accounts: finance and wealth",
+        "australian system of national accounts",
+        "barriers and incentives",
+        "international trade",
+        "trade in goods",
+        "balance of payments",
+        "building approvals",
+        "business indicators",
+        "construction work done",
+        "capital expenditure",
+        "new capital expenditure",
+        "household spending",
+        "jolts",
+        "job openings",
+        "minutes",
+    ]
+
+    if any(x in t for x in excluded_phrases):
+        return False
+
+    # Central bank releases.
+    if "fomc interest rate decision" in t:
+        return True
+
+    if "fomc press conference" in t:
+        return True
+
+    if "cash rate" in t or "monetary policy decision" in t:
+        return True
+
+    if "statement on monetary policy" in t:
+        return True
+
+    # Main Australian GDP release.
+    if (
+        "australian national accounts" in t
+        and "national income, expenditure and product" in t
+    ):
+        return True
+
+    # Main US GDP releases from BEA.
+    if "gdp" in t and any(
+        phrase in t
+        for phrase in [
+            "advance estimate",
+            "second estimate",
+            "third estimate",
+            "final estimate",
+        ]
+    ):
+        return True
+
+    if "gross domestic product" in t and "by " not in t:
+        return True
+
+    # Inflation.
+    if "consumer price index" in t or re.search(r"\bcpi\b", t):
+        return True
+
+    if "producer price index" in t or re.search(r"\bppi\b", t):
+        return True
+
+    if "pce price index" in t or "personal income and outlays" in t:
+        return True
+
+    # Jobs.
+    if t.startswith("labour force") or "labour force, australia" in t:
+        return True
+
+    if t.startswith("labor force") or "labor force, united states" in t:
+        return True
+
+    if "employment situation" in t or "nonfarm" in t or "payroll" in t:
+        return True
+
+    # Wages.
+    if "wage price index" in t or "average weekly earnings" in t:
+        return True
+
+    return False
+
+
 def release_explainer_key_for(title: str) -> str | None:
     t = title.lower()
 
@@ -363,7 +465,6 @@ def fold_ics_line(line: str) -> str:
     while len(line.encode("utf-8")) > max_len:
         cut = max_len
 
-        # Avoid splitting multibyte chars by backing off until valid.
         while True:
             try:
                 head = line.encode("utf-8")[:cut].decode("utf-8")
@@ -451,7 +552,6 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
             ]
         )
 
-        # Calendar alerts: tune these to taste.
         if ev.impact == "high":
             lines.extend(
                 [
@@ -534,7 +634,6 @@ def parse_ics_datetime(line: str, fallback_tz: ZoneInfo = UTC) -> datetime | Non
 
 
 def parse_ics_duration(value: str) -> timedelta:
-    # Simple support for PT30M, PT1H, P1D etc.
     days = hours = minutes = 0
 
     m = re.search(r"(\d+)D", value)
@@ -620,7 +719,7 @@ def fetch_official_ics_events() -> list[MacroEvent]:
 # ----------------------------
 
 def month_urls_from_abs_index() -> list[str]:
-    """Find the current six months of ABS future-release pages."""
+    """Find ABS future-release pages."""
     try:
         text = fetch_text(ABS_BASE)
         soup = BeautifulSoup(text, "html.parser")
@@ -640,7 +739,6 @@ def month_urls_from_abs_index() -> list[str]:
     except Exception as e:
         print(f"Warning: failed to discover ABS month URLs: {e}")
 
-        # Fallback: current month + next 5 months.
         today = datetime.now(AU_SYDNEY).date().replace(day=1)
         urls = [ABS_BASE]
 
@@ -652,7 +750,6 @@ def month_urls_from_abs_index() -> list[str]:
 
 
 def parse_abs_datetime(line: str) -> datetime | None:
-    # Example: Wednesday 27 May 2026 11:30am AEST | Updated information
     clean = normalise(line).replace("| Updated information", "")
 
     pattern = (
@@ -672,9 +769,6 @@ def parse_abs_datetime(line: str) -> datetime | None:
 
     try:
         naive = datetime.strptime(f"{date_part} {time_part}", "%d %B %Y %I:%M%p")
-
-        # ABS says release-calendar times are Canberra time.
-        # Sydney zone handles AEST/AEDT transitions.
         return naive.replace(tzinfo=AU_SYDNEY)
 
     except Exception:
@@ -693,7 +787,6 @@ def parse_abs_page(text: str, url: str) -> list[MacroEvent]:
         if not start:
             continue
 
-        # The title is normally the next meaningful line after the date/time line.
         title = None
 
         for j in range(i + 1, min(i + 8, len(lines))):
@@ -752,9 +845,6 @@ def fetch_abs_events() -> list[MacroEvent]:
 # ----------------------------
 
 def parse_rba_datetime(line: str) -> datetime | None:
-    # Examples:
-    # 13 October 2026 11.30 am AEDT
-    # 3 November 2026 2.30 pm AEDT
     clean = normalise(line).replace("\u00a0", " ")
 
     m = re.search(
@@ -793,7 +883,6 @@ def fetch_rba_events() -> list[MacroEvent]:
             if not is_market_event(title):
                 continue
 
-            # Find date/time in the next few lines, because RBA often puts the event title first.
             start = None
 
             for j in range(i + 1, min(i + 6, len(lines))):
@@ -822,7 +911,7 @@ def fetch_rba_events() -> list[MacroEvent]:
 
 
 # ----------------------------
-# FOMC helper parser
+# FOMC parser
 # ----------------------------
 
 def fetch_fomc_events() -> list[MacroEvent]:
@@ -846,7 +935,6 @@ def fetch_fomc_events() -> list[MacroEvent]:
         month_dt = month_start + relativedelta(months=i)
         year = month_dt.year
         month_slug = month_dt.strftime("%B").lower()
-        month_name = month_dt.strftime("%B")
         url = f"https://www.federalreserve.gov/newsevents/{year}-{month_slug}.htm"
 
         try:
@@ -880,8 +968,6 @@ def fetch_fomc_events() -> list[MacroEvent]:
 
             section = " ".join(section_lines)
 
-            # Example from Fed monthly page:
-            # 2:00 p.m. FOMC Meeting Two-day meeting, June 16 - 17
             meeting_match = re.search(
                 r"(\d{1,2}):(\d{2})\s*(a\.m\.|p\.m\.)\s+"
                 r"FOMC Meeting\s+Two-day meeting,\s+"
@@ -923,9 +1009,6 @@ def fetch_fomc_events() -> list[MacroEvent]:
                     )
                 )
 
-            # Optional separate press conference event.
-            # Example from Fed monthly page:
-            # 2:30 p.m. FOMC Press Conference 17
             press_match = re.search(
                 r"(\d{1,2}):(\d{2})\s*(a\.m\.|p\.m\.)\s+"
                 r"FOMC Press Conference\s+(\d{1,2})",
@@ -970,6 +1053,7 @@ def fetch_fomc_events() -> list[MacroEvent]:
 
     return events
 
+
 # ----------------------------
 # Build / serve
 # ----------------------------
@@ -982,15 +1066,14 @@ def collect_events() -> list[MacroEvent]:
     events.extend(fetch_rba_events())
     events.extend(fetch_fomc_events())
 
-    # Keep events from yesterday onwards so recently released items are still visible briefly.
     cutoff = datetime.now(UTC) - timedelta(days=1)
     events = [e for e in events if ensure_utc(e.start) >= cutoff]
 
-    # Final filter + sort.
-    events = [e for e in events if is_market_event(e.title)]
-    events = [e for e in events if e.impact == "high"]
+    # Final strict filter.
+    events = [e for e in events if is_core_high_impact_release(e.title)]
 
     return sorted(events, key=lambda e: e.start)
+
 
 def build_file() -> Path:
     events = collect_events()
