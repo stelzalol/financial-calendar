@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AU + US Macro Release Calendar</title>
+  <meta name="description" content="A live AU + US macroeconomic release calendar feed for traders and investors. Subscribe in Apple Calendar, Google Calendar, Outlook or Android." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.13);
+      --text: #f5f7fb;
+      --muted: #b9c4d6;
+      --accent: #37d67a;
+      --accent-2: #ff9d2e;
+      --border: rgba(255, 255, 255, 0.14);
+      --danger: #ff6b6b;
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.36);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(55, 214, 122, 0.25), transparent 34%),
+        radial-gradient(circle at top right, rgba(255, 157, 46, 0.19), transparent 32%),
+        linear-gradient(135deg, #07111f 0%, #0e1d33 48%, #07111f 100%);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(55, 214, 122, 0.95), rgba(255, 157, 46, 0.95));
+      box-shadow: 0 10px 30px rgba(55, 214, 122, 0.15);
+      font-size: 23px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-main {
+      padding: clamp(28px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -170px auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      background: rgba(55, 214, 122, 0.12);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #08111f;
+      background: var(--accent);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      margin: 0 0 20px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      max-width: 760px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .button {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-weight: 800;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.16s ease, background 0.16s ease, border 0.16s ease;
+      min-height: 50px;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #06121f;
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .button.warning {
+      background: var(--accent-2);
+      color: #16100a;
+    }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.07);
+      padding: 8px 11px;
+      border-radius: 999px;
+    }
+
+    .hero-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .calendar-preview {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .preview-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .event-list {
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .event-time {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .event-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .event-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .feed-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 18px 0;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      letter-spacing: -0.04em;
+      margin: 0 0 14px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      padding-left: 0;
+      list-style: none;
+      margin: 16px 0 0;
+    }
+
+    .list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .list li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .step-card ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .step-card li {
+      margin: 7px 0;
+    }
+
+    .notice {
+      padding: 20px 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 157, 46, 0.35);
+      background: rgba(255, 157, 46, 0.09);
+      margin-top: 18px;
+    }
+
+    .notice strong {
+      color: #ffd59f;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+      padding-top: 28px;
+      text-align: center;
+    }
+
+    .copy-message {
+      display: none;
+      margin-top: 10px;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .copy-message.show {
+      display: block;
+    }
+
+    @media (max-width: 880px) {
+      .hero,
+      .grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">📊</div>
+        <div>AU + US Macro Releases</div>
+      </div>
+      <div class="nav-links">
+        <a href="#subscribe">Subscribe</a>
+        <a href="#supported">Supported calendars</a>
+        <a href="#unsubscribe">Unsubscribe</a>
+        <a href="#disclaimer">Disclaimer</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-main panel">
+        <div class="tag">🔥 Live economic calendar feed</div>
+        <h1>AU + US Macro Release Calendar</h1>
+        <p class="lead">
+          A live calendar feed for high-impact Australian and US financial announcements,
+          designed for traders and investors who want key macro dates inside their calendar app.
+        </p>
+
+        <div class="hero-actions" id="subscribe">
+          <a class="button primary" href="webcal://stelzalol.github.io/financial-calendar/macro-calendar.ics">
+            Subscribe in calendar app
+          </a>
+          <button class="button secondary" type="button" onclick="copyFeedLink()">
+            Copy calendar feed link
+          </button>
+          <a class="button warning" href="https://stelzalol.github.io/financial-calendar/macro-calendar.ics">
+            Open .ics feed
+          </a>
+        </div>
+
+        <div id="copyMessage" class="copy-message">Calendar feed link copied.</div>
+
+        <div class="status">
+          <span class="pill">AU CPI</span>
+          <span class="pill">AU Labour Force</span>
+          <span class="pill">AU GDP</span>
+          <span class="pill">US GDP</span>
+          <span class="pill">US PCE</span>
+          <span class="pill">FOMC</span>
+        </div>
+      </div>
+
+      <aside class="hero-card panel">
+        <div class="calendar-preview">
+          <div class="preview-top">
+            <span>Sample releases</span>
+            <span>Live feed</span>
+          </div>
+          <div class="event-list">
+            <div class="event">
+              <div class="event-time">11:30</div>
+              <div>
+                <div class="event-title">AU ABS: Consumer Price Index</div>
+                <div class="event-note">Australian inflation release</div>
+              </div>
+            </div>
+            <div class="event">
+              <div class="event-time">11:30</div>
+              <div>
+                <div class="event-title">AU ABS: Labour Force</div>
+                <div class="event-note">Employment and unemployment data</div>
+              </div>
+            </div>
+            <div class="event">
+              <div class="event-time">04:00</div>
+              <div>
+                <div class="event-title">US Fed: FOMC Rate Decision</div>
+                <div class="event-note">Shown in your local calendar time</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="small">Calendar feed URL:</div>
+          <div class="feed-box" id="feedUrl">https://stelzalol.github.io/financial-calendar/macro-calendar.ics</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <div class="card panel">
+        <h3>What is included?</h3>
+        <ul class="list">
+          <li>Australian CPI / inflation releases</li>
+          <li>Australian Labour Force data</li>
+          <li>Australian GDP / National Accounts</li>
+          <li>Wage Price Index and key price releases</li>
+          <li>US GDP and Personal Income / PCE releases</li>
+          <li>US FOMC decisions and press conferences</li>
+        </ul>
+      </div>
+
+      <div class="card panel">
+        <h3>How updates work</h3>
+        <p>
+          Subscribe once and the feed can update automatically when the calendar file is refreshed.
+          Do not simply import a downloaded file if you want live updates.
+        </p>
+        <ul class="list">
+          <li>Events are shown in your local calendar timezone</li>
+          <li>High-impact events include alerts</li>
+          <li>Event notes include plain-English explainers</li>
+        </ul>
+      </div>
+
+      <div class="card panel" id="supported">
+        <h3>No iPhone?</h3>
+        <p>
+          You can still use the calendar if your calendar app supports subscribed iCal / ICS calendar feeds.
+        </p>
+        <ul class="list">
+          <li>Apple Calendar on Mac, iPhone and iPad</li>
+          <li>Google Calendar and Android</li>
+          <li>Outlook / Microsoft 365</li>
+          <li>Other calendar apps that support subscribed ICS feeds</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card panel">
+      <h2>How to subscribe</h2>
+      <p>
+        Use the live subscription feed where possible. Importing the .ics file directly may create a one-time copy
+        that does not update automatically.
+      </p>
+
+      <div class="steps">
+        <div class="step-card">
+          <h3>iPhone / iPad</h3>
+          <ol>
+            <li>Open Settings.</li>
+            <li>Go to Calendar → Accounts.</li>
+            <li>Tap Add Account → Other.</li>
+            <li>Tap Add Subscribed Calendar.</li>
+            <li>Paste the feed link and save.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Mac Apple Calendar</h3>
+          <ol>
+            <li>Open Apple Calendar.</li>
+            <li>Choose File → New Calendar Subscription.</li>
+            <li>Paste the feed link.</li>
+            <li>Choose your refresh settings and subscribe.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Google Calendar / Android</h3>
+          <ol>
+            <li>Open Google Calendar on a computer.</li>
+            <li>Go to Other calendars → + → From URL.</li>
+            <li>Paste the feed link.</li>
+            <li>Add the calendar.</li>
+            <li>It should then sync to Google Calendar on Android.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Outlook / Microsoft 365</h3>
+          <ol>
+            <li>Open Outlook Calendar on the web.</li>
+            <li>Choose Add calendar.</li>
+            <li>Select Subscribe from web.</li>
+            <li>Paste the feed link and save.</li>
+            <li>Outlook may refresh subscribed calendars more slowly.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="notice">
+        <strong>Tip:</strong> If the subscribe button downloads a file instead of subscribing, copy the feed link and add it manually as a subscribed calendar.
+      </div>
+    </section>
+
+    <section class="card panel" id="unsubscribe" style="margin-top: 18px;">
+      <h2>How to unsubscribe</h2>
+      <div class="steps">
+        <div class="step-card">
+          <h3>iPhone / iPad</h3>
+          <ol>
+            <li>Open the Calendar app.</li>
+            <li>Tap Calendars.</li>
+            <li>Tap the info button next to this macro calendar.</li>
+            <li>Tap Unsubscribe or Delete Calendar.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Mac Apple Calendar</h3>
+          <ol>
+            <li>Open Apple Calendar.</li>
+            <li>Find this calendar in the sidebar.</li>
+            <li>Right-click it.</li>
+            <li>Choose Unsubscribe or Delete.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Google Calendar</h3>
+          <ol>
+            <li>Open Google Calendar on a computer.</li>
+            <li>Open Settings.</li>
+            <li>Select this macro calendar.</li>
+            <li>Choose Remove calendar → Unsubscribe.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h3>Outlook</h3>
+          <ol>
+            <li>Open Outlook Calendar.</li>
+            <li>Find the subscribed macro calendar.</li>
+            <li>Right-click it.</li>
+            <li>Choose Delete Calendar or Remove.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="card panel" id="disclaimer" style="margin-top: 18px;">
+      <h2>Disclaimer</h2>
+      <p>
+        This calendar is for informational purposes only and is not financial advice.
+        Dates and times are sourced from public official sources where possible, but users should verify important releases before making trading or investment decisions.
+      </p>
+      <p>
+        This is an independent calendar feed and is not affiliated with the Australian Bureau of Statistics,
+        Reserve Bank of Australia, US Bureau of Economic Analysis, Federal Reserve, Apple, Google or Microsoft.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p>
+        AU + US Macro Release Calendar · Live feed:
+        <span>https://stelzalol.github.io/financial-calendar/macro-calendar.ics</span>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const feedLink = "https://stelzalol.github.io/financial-calendar/macro-calendar.ics";
+
+    async function copyFeedLink() {
+      const message = document.getElementById("copyMessage");
+
+      try {
+        await navigator.clipboard.writeText(feedLink);
+        message.classList.add("show");
+        setTimeout(() => message.classList.remove("show"), 2400);
+      } catch (error) {
+        const textArea = document.createElement("textarea");
+        textArea.value = feedLink;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        message.classList.add("show");
+        setTimeout(() => message.classList.remove("show"), 2400);
+      }
+    }
+  </script>
+</body>
+</html>
