@@ -8,8 +8,388 @@ X-WR-TIMEZONE:UTC
 REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
+UID:9db680af3a82142706c1e87ed536e8ab317eaca4@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260122T150000Z
+DTEND:20260122T153000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, October and November 2
+ 025
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, October 
+ and November 2025
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Octobe
+ r and November 2025
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:52a7d8984977687a688b268e72bf36c4f4f8ddf7@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260220T133000Z
+DTEND:20260220T140000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, December 2025
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, December
+  2025
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Decemb
+ er 2025
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f51c801c5e662dc1fc6c13c078e72f9a6a0a7464@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260220T133000Z
+DTEND:20260220T140000Z
+SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 4th Quarter and Year 2025
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 4th Quarter a
+ nd Year 2025
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 4th Quarter
+  and Year 2025
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:11a21dc7c2328f3e02a24287ce5bd5a35524ef2f@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260313T123000Z
+DTEND:20260313T130000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, January 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, January 
+ 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Januar
+ y 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:527d3844ad5249891fce1197ca4824a8d8161be6@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260313T123000Z
+DTEND:20260313T130000Z
+SUMMARY:🔥 US BEA: GDP (Second Estimate)\, 4th Quarter and Year 2025
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Second Estimate)\, 4th Quarter an
+ d Year 2025
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Second Estimate)\, 4th Quarter 
+ and Year 2025
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d141e21ec6e200bed41568707203d581013379ff@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260409T123000Z
+DTEND:20260409T130000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, February 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, February
+  2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Februa
+ ry 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:aff785fb2ddbf5806e91f7ef2716412a26bfbb84@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260409T123000Z
+DTEND:20260409T130000Z
+SUMMARY:🔥 US BEA: GDP (Third Estimate)\, Industries\, Corporate Profit
+ s\, State GDP\, and State Personal Income\, 4th Quarter and Year 2025
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Third Estimate)\, Industries\, Co
+ rporate Profits\, State GDP\, and State Personal Income\, 4th Quarter an
+ d Year 2025
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Third Estimate)\, Industries\, 
+ Corporate Profits\, State GDP\, and State Personal Income\, 4th Quarter 
+ and Year 2025
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7ed4eb44f27f7bb1bdda7bdccc7d05c4d47c56da@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260430T123000Z
+DTEND:20260430T130000Z
+SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 1st Quarter 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 1st Quarter 2
+ 026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 1st Quarter
+  2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9cd415408270382c89a3f68099f1a2cc803295e1@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260430T123000Z
+DTEND:20260430T130000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, March 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, March 20
+ 26
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, March 
+ 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:520dc0ed3bf69515ad281b9a90533150ea66dd04@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260528T123000Z
+DTEND:20260528T130000Z
+SUMMARY:🔥 US BEA: GDP (Second Estimate) and Corporate Profits\, 1st Qu
+ arter 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Second Estimate) and Corporate Pr
+ ofits\, 1st Quarter 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Second Estimate) and Corporate 
+ Profits\, 1st Quarter 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b0f73d380b512d45388e59a54e1793216f599a01@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260528T123000Z
+DTEND:20260528T130000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, April 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, April 20
+ 26
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, April 
+ 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:8031f3999fc3b89e2e18046ff90ab960d89846ae@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260617T180000Z
 DTEND:20260617T190000Z
 SUMMARY:🔥 US Fed: FOMC Interest Rate Decision
@@ -42,7 +422,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:678644a10ad88089cf1fe5af4c195dba31c5a995@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260617T183000Z
 DTEND:20260617T193000Z
 SUMMARY:🔥 US Fed: FOMC Press Conference
@@ -74,8 +454,140 @@ DESCRIPTION:30 minutes: 🔥 US Fed: FOMC Press Conference
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:07fcb1ea4a95f2efe45eac818262098cb7b1dfb2@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260624T013000Z
+DTEND:20260624T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202606/rcc_economy
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:659594e646160d13bb908082b7c25c83078de9a6@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260624T013000Z
+DTEND:20260624T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia\, May 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Con
+ sumer Price Index\n\n• Measures: Change in the prices paid by consumer
+ s for a basket of goods and services.\n\n• Usual market effect: Higher
+ -than-forecast inflation is usually bullish for the local currency and b
+ earish for bonds\, because markets may price in higher interest rates.\n
+ \n• Why traders care: CPI is one of the most watched inflation indicat
+ ors because it can quickly shift central-bank rate expectations.\n\n• 
+ Frequency: US CPI is monthly. Australian CPI has both monthly indicator 
+ releases and quarterly CPI releases.\n\n• Notes: Core CPI removes vola
+ tile items such as food and energy to give a cleaner read on underlying 
+ inflation pressure.\n\n• Acronyms: CPI = Consumer Price Index.\n\nOffi
+ cial source: https://www.abs.gov.au/statistics/economy/price-indexes-and
+ -inflation/consumer-price-index-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia\, May
+  2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia\, M
+ ay 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7890215fea040fda3d374cbd620f6b9e3cf2060a@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260625T013000Z
+DTEND:20260625T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202606/rcc_labour
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9a46cb70abdb56c855776cd6b1995b237b9fbf76@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260625T013000Z
+DTEND:20260625T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia\, May 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Emp
+ loyment / Payrolls / Labour Force\n\n• Measures: Change in employment\
+ , unemployment\, participation and labour-market strength.\n\n• Usual 
+ market effect: Stronger-than-forecast jobs data is usually bullish for t
+ he local currency and bearish for bonds if it increases rate-hike expect
+ ations.\n\n• Why traders care: Jobs data is a major driver of interest
+ -rate expectations\, consumer spending expectations and recession-risk p
+ ricing.\n\n• Frequency: Monthly.\n\n• Notes: For the US\, Non-Farm P
+ ayrolls is one of the most market-moving releases. For Australia\, Labou
+ r Force data is important for RBA expectations.\n\n• Acronyms: NFP = N
+ on-Farm Payrolls\; ABS = Australian Bureau of Statistics\; BLS = Bureau 
+ of Labor Statistics.\n\nOfficial source: https://www.abs.gov.au/statisti
+ cs/labour/employment-and-unemployment/labour-force-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia\, May 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia\, May 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:24172329c69511474d319073978cf4548f0d816b@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260625T123000Z
 DTEND:20260625T130000Z
 SUMMARY:🔥 US BEA: Personal Income and Outlays\, May 2026
@@ -109,7 +621,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:159349de5e3db2ee93d7591f08e3467dfd554916@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260625T123000Z
 DTEND:20260625T130000Z
 SUMMARY:🔥 US BEA: GDP (Third Estimate)\, Industries\, Corporate Profit
@@ -144,8 +656,140 @@ DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Third Estimate)\, Industries\,
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:33b5044cd8188d5dae9d9f2101c824c9a68a2ee1@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260723T013000Z
+DTEND:20260723T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202607
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8def6b5c9a176f33d6c74f9046dede97f4eec1d8@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260723T013000Z
+DTEND:20260723T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia\, June 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Emp
+ loyment / Payrolls / Labour Force\n\n• Measures: Change in employment\
+ , unemployment\, participation and labour-market strength.\n\n• Usual 
+ market effect: Stronger-than-forecast jobs data is usually bullish for t
+ he local currency and bearish for bonds if it increases rate-hike expect
+ ations.\n\n• Why traders care: Jobs data is a major driver of interest
+ -rate expectations\, consumer spending expectations and recession-risk p
+ ricing.\n\n• Frequency: Monthly.\n\n• Notes: For the US\, Non-Farm P
+ ayrolls is one of the most market-moving releases. For Australia\, Labou
+ r Force data is important for RBA expectations.\n\n• Acronyms: NFP = N
+ on-Farm Payrolls\; ABS = Australian Bureau of Statistics\; BLS = Bureau 
+ of Labor Statistics.\n\nOfficial source: https://www.abs.gov.au/statisti
+ cs/labour/employment-and-unemployment/labour-force-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia\, June 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia\, June 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ab06ee230a47a9b97107e56e2198d547f8b8faa9@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260729T013000Z
+DTEND:20260729T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202607
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:918b03f6655ae9391897a67f3993ca58a8f5fcca@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260729T013000Z
+DTEND:20260729T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia\, June 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Con
+ sumer Price Index\n\n• Measures: Change in the prices paid by consumer
+ s for a basket of goods and services.\n\n• Usual market effect: Higher
+ -than-forecast inflation is usually bullish for the local currency and b
+ earish for bonds\, because markets may price in higher interest rates.\n
+ \n• Why traders care: CPI is one of the most watched inflation indicat
+ ors because it can quickly shift central-bank rate expectations.\n\n• 
+ Frequency: US CPI is monthly. Australian CPI has both monthly indicator 
+ releases and quarterly CPI releases.\n\n• Notes: Core CPI removes vola
+ tile items such as food and energy to give a cleaner read on underlying 
+ inflation pressure.\n\n• Acronyms: CPI = Consumer Price Index.\n\nOffi
+ cial source: https://www.abs.gov.au/statistics/economy/price-indexes-and
+ -inflation/consumer-price-index-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia\, Jun
+ e 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia\, J
+ une 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:ce0a8dc824ed0cc21b4ae6756d3ecfb440021bde@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260729T180000Z
 DTEND:20260729T190000Z
 SUMMARY:🔥 US Fed: FOMC Interest Rate Decision
@@ -178,7 +822,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:8ebd753281704e5af814eab93e8ee597320d8841@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260729T183000Z
 DTEND:20260729T193000Z
 SUMMARY:🔥 US Fed: FOMC Press Conference
@@ -210,8 +854,41 @@ DESCRIPTION:30 minutes: 🔥 US Fed: FOMC Press Conference
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:621774924a2064311a8aa7acbe9cfb06c2bdfb22@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260730T123000Z
+DTEND:20260730T130000Z
+SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter 2
+ 026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter
+  2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:cbf284cab5f3822c44a404759e7529d85358299f@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260730T123000Z
 DTEND:20260730T130000Z
 SUMMARY:🔥 US BEA: Personal Income and Outlays\, June 2026
@@ -245,75 +922,297 @@ DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, June 2
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:621774924a2064311a8aa7acbe9cfb06c2bdfb22@macro-calendar.local
-DTSTAMP:20260603T033558Z
-DTSTART:20260730T123000Z
-DTEND:20260730T130000Z
-SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter 2026
-DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
- What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
- value of goods and services produced by the economy.\n\n• Usual market
-  effect: Stronger-than-forecast GDP can be bullish for the local currenc
- y and equities\, although the reaction depends on inflation and rate exp
- ectations.\n\n• Why traders care: GDP is the broadest measure of econo
- mic growth and helps traders judge whether the economy is accelerating o
- r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
- DP can be backward-looking\, so markets often react more strongly when t
- he result changes the outlook for central-bank policy or recession risk.
- \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
- s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+UID:385e0f98f5e6b7c14f87aab427fcfbf8ad54f76f@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260731T013000Z
+DTEND:20260731T020000Z
+SUMMARY:🔥 AU ABS: Producer Price Indexes\, Australia\, June 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Pro
+ ducer Price Index\n\n• Measures: Change in prices received by producer
+ s for goods and services.\n\n• Usual market effect: Higher-than-foreca
+ st PPI can be bullish for the local currency if traders expect producer 
+ inflation to flow through to consumer inflation.\n\n• Why traders care
+ : PPI can provide an early signal of inflation pressure before it reache
+ s consumers.\n\n• Frequency: Monthly in the US. Quarterly in Australia
+ .\n\n• Notes: PPI is usually less market-moving than CPI\, but it can 
+ still matter when inflation is the main macro theme.\n\n• Acronyms: PP
+ I = Producer Price Index.\n\nOfficial source: https://www.abs.gov.au/sta
+ tistics/economy/price-indexes-and-inflation/producer-price-indexes-austr
+ alia
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 TRIGGER:-PT24H
 ACTION:DISPLAY
-DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter 2
- 026
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Producer Price Indexes\, Australia\, J
+ une 2026
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT30M
 ACTION:DISPLAY
-DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 2nd Quarter
-  2026
+DESCRIPTION:30 minutes: 🔥 AU ABS: Producer Price Indexes\, Australia\,
+  June 2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b410f1db3ec547864a9bee7340b59aaf91e06a88@macro-calendar.local
-DTSTAMP:20260603T033558Z
-DTSTART:20260826T123000Z
-DTEND:20260826T130000Z
-SUMMARY:🔥 US BEA: GDP (Second Estimate) and Corporate Profits\, 2nd Qu
- arter 2026
-DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
- What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
- value of goods and services produced by the economy.\n\n• Usual market
-  effect: Stronger-than-forecast GDP can be bullish for the local currenc
- y and equities\, although the reaction depends on inflation and rate exp
- ectations.\n\n• Why traders care: GDP is the broadest measure of econo
- mic growth and helps traders judge whether the economy is accelerating o
- r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
- DP can be backward-looking\, so markets often react more strongly when t
- he result changes the outlook for central-bank policy or recession risk.
- \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
- s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+UID:3eaadbcfa0f21fd5b0c5ef1102a59ee964c5270a@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260731T013000Z
+DTEND:20260731T020000Z
+SUMMARY:🔥 AU ABS: Producer Price Indexes\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Producer Price Index\n\n• Measures: Change in prices 
+ received by producers for goods and services.\n\n• Usual market effect
+ : Higher-than-forecast PPI can be bullish for the local currency if trad
+ ers expect producer inflation to flow through to consumer inflation.\n\n
+ • Why traders care: PPI can provide an early signal of inflation press
+ ure before it reaches consumers.\n\n• Frequency: Monthly in the US. Qu
+ arterly in Australia.\n\n• Notes: PPI is usually less market-moving th
+ an CPI\, but it can still matter when inflation is the main macro theme.
+ \n\n• Acronyms: PPI = Producer Price Index.\n\nOfficial source: https:
+ //www.abs.gov.au/release-calendar/future-releases/202607
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 TRIGGER:-PT24H
 ACTION:DISPLAY
-DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Second Estimate) and Corporate Pr
- ofits\, 2nd Quarter 2026
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Producer Price Indexes\, Australia
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT30M
 ACTION:DISPLAY
-DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Second Estimate) and Corporate 
- Profits\, 2nd Quarter 2026
+DESCRIPTION:30 minutes: 🔥 AU ABS: Producer Price Indexes\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d2a00581c9af26f458de163d163f8fa428df8923@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260813T013000Z
+DTEND:20260813T020000Z
+SUMMARY:🔥 AU ABS: Average Weekly Earnings\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Wage Price Index / Average Earnings\n\n• Measures: Ch
+ ange in wages and earnings.\n\n• Usual market effect: Higher-than-fore
+ cast wage growth can be bullish for the local currency if traders expect
+  stronger inflation pressure and tighter central-bank policy.\n\n• Why
+  traders care: Wage growth can feed into inflation and is closely watche
+ d by central banks.\n\n• Frequency: Monthly or quarterly depending on 
+ release.\n\n• Notes: Strong wages can be positive for consumers but ca
+ n also increase inflation pressure.\n\n• Acronyms: WPI = Wage Price In
+ dex.\n\nOfficial source: https://www.abs.gov.au/release-calendar/future-
+ releases/202608
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Average Weekly Earnings\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Average Weekly Earnings\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:4a7cf619576630abc00bb629643731daea65fa3f@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260819T013000Z
+DTEND:20260819T020000Z
+SUMMARY:🔥 AU ABS: Wage Price Index\, Australia\, June 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Wag
+ e Price Index / Average Earnings\n\n• Measures: Change in wages and ea
+ rnings.\n\n• Usual market effect: Higher-than-forecast wage growth can
+  be bullish for the local currency if traders expect stronger inflation 
+ pressure and tighter central-bank policy.\n\n• Why traders care: Wage 
+ growth can feed into inflation and is closely watched by central banks.\
+ n\n• Frequency: Monthly or quarterly depending on release.\n\n• Note
+ s: Strong wages can be positive for consumers but can also increase infl
+ ation pressure.\n\n• Acronyms: WPI = Wage Price Index.\n\nOfficial sou
+ rce: https://www.abs.gov.au/statistics/economy/price-indexes-and-inflati
+ on/wage-price-index-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Wage Price Index\, Australia\, June 20
+ 26
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Wage Price Index\, Australia\, June 
+ 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:46fe6df23107acabefeb3da8e32a24064a220077@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260819T013000Z
+DTEND:20260819T020000Z
+SUMMARY:🔥 AU ABS: Wage Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Wage Price Index / Average Earnings\n\n• Measures: Ch
+ ange in wages and earnings.\n\n• Usual market effect: Higher-than-fore
+ cast wage growth can be bullish for the local currency if traders expect
+  stronger inflation pressure and tighter central-bank policy.\n\n• Why
+  traders care: Wage growth can feed into inflation and is closely watche
+ d by central banks.\n\n• Frequency: Monthly or quarterly depending on 
+ release.\n\n• Notes: Strong wages can be positive for consumers but ca
+ n also increase inflation pressure.\n\n• Acronyms: WPI = Wage Price In
+ dex.\n\nOfficial source: https://www.abs.gov.au/release-calendar/future-
+ releases/202608
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Wage Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Wage Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:99a0fe51464ab408328c45973c08a47fd1a50a00@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260820T013000Z
+DTEND:20260820T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia\, July 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Emp
+ loyment / Payrolls / Labour Force\n\n• Measures: Change in employment\
+ , unemployment\, participation and labour-market strength.\n\n• Usual 
+ market effect: Stronger-than-forecast jobs data is usually bullish for t
+ he local currency and bearish for bonds if it increases rate-hike expect
+ ations.\n\n• Why traders care: Jobs data is a major driver of interest
+ -rate expectations\, consumer spending expectations and recession-risk p
+ ricing.\n\n• Frequency: Monthly.\n\n• Notes: For the US\, Non-Farm P
+ ayrolls is one of the most market-moving releases. For Australia\, Labou
+ r Force data is important for RBA expectations.\n\n• Acronyms: NFP = N
+ on-Farm Payrolls\; ABS = Australian Bureau of Statistics\; BLS = Bureau 
+ of Labor Statistics.\n\nOfficial source: https://www.abs.gov.au/statisti
+ cs/labour/employment-and-unemployment/labour-force-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia\, July 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia\, July 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:24e885e58c80aeb3da95aea61abdbd6127740641@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260820T013000Z
+DTEND:20260820T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202608
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:157cd35b7cebbf820dac0ac02cad7af2466cdbd9@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260826T013000Z
+DTEND:20260826T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia\, July 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Con
+ sumer Price Index\n\n• Measures: Change in the prices paid by consumer
+ s for a basket of goods and services.\n\n• Usual market effect: Higher
+ -than-forecast inflation is usually bullish for the local currency and b
+ earish for bonds\, because markets may price in higher interest rates.\n
+ \n• Why traders care: CPI is one of the most watched inflation indicat
+ ors because it can quickly shift central-bank rate expectations.\n\n• 
+ Frequency: US CPI is monthly. Australian CPI has both monthly indicator 
+ releases and quarterly CPI releases.\n\n• Notes: Core CPI removes vola
+ tile items such as food and energy to give a cleaner read on underlying 
+ inflation pressure.\n\n• Acronyms: CPI = Consumer Price Index.\n\nOffi
+ cial source: https://www.abs.gov.au/statistics/economy/price-indexes-and
+ -inflation/consumer-price-index-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia\, Jul
+ y 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia\, J
+ uly 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1ec81691a4a97703723e28cc7c52a82c8f39943d@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260826T013000Z
+DTEND:20260826T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202608
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:9435534790dadc3877b989affa44da89db62f632@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260826T123000Z
 DTEND:20260826T130000Z
 SUMMARY:🔥 US BEA: Personal Income and Outlays\, July 2026
@@ -347,8 +1246,112 @@ DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, July 2
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:b410f1db3ec547864a9bee7340b59aaf91e06a88@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260826T123000Z
+DTEND:20260826T130000Z
+SUMMARY:🔥 US BEA: GDP (Second Estimate) and Corporate Profits\, 2nd Qu
+ arter 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Second Estimate) and Corporate Pr
+ ofits\, 2nd Quarter 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Second Estimate) and Corporate 
+ Profits\, 2nd Quarter 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a1b6c51b0991e9853b178c01b08b39b5c546e2fe@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260902T013000Z
+DTEND:20260902T020000Z
+SUMMARY:🔥 AU ABS: Australian National Accounts: National Income\, Expe
+ nditure and Product\, June 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Gro
+ ss Domestic Product\n\n• Measures: Broad change in the value of goods 
+ and services produced by the economy.\n\n• Usual market effect: Strong
+ er-than-forecast GDP can be bullish for the local currency and equities\
+ , although the reaction depends on inflation and rate expectations.\n\n
+ • Why traders care: GDP is the broadest measure of economic growth and
+  helps traders judge whether the economy is accelerating or slowing.\n\n
+ • Frequency: Quarterly\, with revisions.\n\n• Notes: GDP can be back
+ ward-looking\, so markets often react more strongly when the result chan
+ ges the outlook for central-bank policy or recession risk.\n\n• Acrony
+ ms: GDP = Gross Domestic Product.\n\nOfficial source: https://www.abs.go
+ v.au/statistics/economy/national-accounts/australian-national-accounts-n
+ ational-income-expenditure-and-product
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Australian National Accounts: National
+  Income\, Expenditure and Product\, June 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Australian National Accounts: Nation
+ al Income\, Expenditure and Product\, June 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7393dbfded97ee30e4b142da21f2a674d6eb9261@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260902T013000Z
+DTEND:20260902T020000Z
+SUMMARY:🔥 AU ABS: Australian National Accounts: National Income\, Expe
+ nditure and Product
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Gross Domestic Product\n\n• Measures: Broad change in
+  the value of goods and services produced by the economy.\n\n• Usual m
+ arket effect: Stronger-than-forecast GDP can be bullish for the local cu
+ rrency and equities\, although the reaction depends on inflation and rat
+ e expectations.\n\n• Why traders care: GDP is the broadest measure of 
+ economic growth and helps traders judge whether the economy is accelerat
+ ing or slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Not
+ es: GDP can be backward-looking\, so markets often react more strongly w
+ hen the result changes the outlook for central-bank policy or recession 
+ risk.\n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source:
+  https://www.abs.gov.au/release-calendar/future-releases/202609
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Australian National Accounts: National
+  Income\, Expenditure and Product
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Australian National Accounts: Nation
+ al Income\, Expenditure and Product
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:ab64f22e42f8c445195282bc6dca04d83bae151a@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260916T180000Z
 DTEND:20260916T190000Z
 SUMMARY:🔥 US Fed: FOMC Interest Rate Decision
@@ -381,7 +1384,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:b6acf320d9571152cdbd673a0b99476ce7331d5b@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260916T183000Z
 DTEND:20260916T193000Z
 SUMMARY:🔥 US Fed: FOMC Press Conference
@@ -413,43 +1416,141 @@ DESCRIPTION:30 minutes: 🔥 US Fed: FOMC Press Conference
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:91cd4d3cca98cc9091d1248551bfd34663652b1c@macro-calendar.local
-DTSTAMP:20260603T033558Z
-DTSTART:20260930T123000Z
-DTEND:20260930T130000Z
-SUMMARY:🔥 US BEA: Personal Income and Outlays\, August 2026
-DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
- What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
- by consumers for goods and services\, excluding food and energy.\n\n• 
- Usual market effect: Higher-than-forecast inflation is usually bullish f
- or USD and bearish for bonds\, because it can increase expectations of t
- ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
- of the Federal Reserve's preferred inflation measures\, so it can strong
- ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
- ally released about four weeks after the month ends.\n\n• Notes: Core 
- PCE differs from Core CPI because it uses a different basket and weighti
- ng method. CPI often gets more immediate market attention\, but Core PCE
-  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
- mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
- tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+UID:9a4a2b8a8419b1baeebc74c244f03d89d2546553@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260924T013000Z
+DTEND:20260924T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia\, August 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Emp
+ loyment / Payrolls / Labour Force\n\n• Measures: Change in employment\
+ , unemployment\, participation and labour-market strength.\n\n• Usual 
+ market effect: Stronger-than-forecast jobs data is usually bullish for t
+ he local currency and bearish for bonds if it increases rate-hike expect
+ ations.\n\n• Why traders care: Jobs data is a major driver of interest
+ -rate expectations\, consumer spending expectations and recession-risk p
+ ricing.\n\n• Frequency: Monthly.\n\n• Notes: For the US\, Non-Farm P
+ ayrolls is one of the most market-moving releases. For Australia\, Labou
+ r Force data is important for RBA expectations.\n\n• Acronyms: NFP = N
+ on-Farm Payrolls\; ABS = Australian Bureau of Statistics\; BLS = Bureau 
+ of Labor Statistics.\n\nOfficial source: https://www.abs.gov.au/statisti
+ cs/labour/employment-and-unemployment/labour-force-australia
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 BEGIN:VALARM
 TRIGGER:-PT24H
 ACTION:DISPLAY
-DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, August 2
- 026
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia\, August 2026
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-PT30M
 ACTION:DISPLAY
-DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, August
-  2026
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia\, August 20
+ 26
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:58f181d19be911fdf63d0a82395e7059df150f1f@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260924T013000Z
+DTEND:20260924T020000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202609
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e1c6c8096e1ff6245495c000029347bd63b33ee7@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260930T013000Z
+DTEND:20260930T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia\, August 2026
+DESCRIPTION:Source: AU ABS\nImpact: high\nOfficial ABS series page releas
+ e date. Time zone shown by ABS: AEST.\n\nExplainer:\n• What it is: Con
+ sumer Price Index\n\n• Measures: Change in the prices paid by consumer
+ s for a basket of goods and services.\n\n• Usual market effect: Higher
+ -than-forecast inflation is usually bullish for the local currency and b
+ earish for bonds\, because markets may price in higher interest rates.\n
+ \n• Why traders care: CPI is one of the most watched inflation indicat
+ ors because it can quickly shift central-bank rate expectations.\n\n• 
+ Frequency: US CPI is monthly. Australian CPI has both monthly indicator 
+ releases and quarterly CPI releases.\n\n• Notes: Core CPI removes vola
+ tile items such as food and energy to give a cleaner read on underlying 
+ inflation pressure.\n\n• Acronyms: CPI = Consumer Price Index.\n\nOffi
+ cial source: https://www.abs.gov.au/statistics/economy/price-indexes-and
+ -inflation/consumer-price-index-australia
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia\, Aug
+ ust 2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia\, A
+ ugust 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:e1e70f38efe9a36886ee9068c3646b65039c8530@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260930T013000Z
+DTEND:20260930T020000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202609
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:4add46a4f1a330f226f5866790a25c8b2ee44506@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20260930T123000Z
 DTEND:20260930T130000Z
 SUMMARY:🔥 US BEA: GDP (Third Estimate)\, Industries\, Corporate Profit
@@ -485,8 +1586,107 @@ DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Third Estimate)\, Industries\,
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:91cd4d3cca98cc9091d1248551bfd34663652b1c@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20260930T123000Z
+DTEND:20260930T130000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, August 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, August 2
+ 026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, August
+  2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c26a19c4eca940ac8737040ce2e81a56cb400e0e@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261015T003000Z
+DTEND:20261015T010000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202610
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f06ddfcf30e2eb7bea3abb49ce0eafe26e9c95cb@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261028T003000Z
+DTEND:20261028T010000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202610
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:8d3b64f0b0c1d78cfbc1123e26a0415e1527c785@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261028T180000Z
 DTEND:20261028T190000Z
 SUMMARY:🔥 US Fed: FOMC Interest Rate Decision
@@ -519,7 +1719,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:bca5b3c261e22895f561d6a9c4fb2fa824eecbbb@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261028T183000Z
 DTEND:20261028T193000Z
 SUMMARY:🔥 US Fed: FOMC Press Conference
@@ -551,41 +1751,8 @@ DESCRIPTION:30 minutes: 🔥 US Fed: FOMC Press Conference
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:442d96460e4d20adc58c243a09f837791f8f0079@macro-calendar.local
-DTSTAMP:20260603T033558Z
-DTSTART:20261029T123000Z
-DTEND:20261029T130000Z
-SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter 2026
-DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
- What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
- value of goods and services produced by the economy.\n\n• Usual market
-  effect: Stronger-than-forecast GDP can be bullish for the local currenc
- y and equities\, although the reaction depends on inflation and rate exp
- ectations.\n\n• Why traders care: GDP is the broadest measure of econo
- mic growth and helps traders judge whether the economy is accelerating o
- r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
- DP can be backward-looking\, so markets often react more strongly when t
- he result changes the outlook for central-bank policy or recession risk.
- \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
- s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-TRIGGER:-PT24H
-ACTION:DISPLAY
-DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter 2
- 026
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT30M
-ACTION:DISPLAY
-DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter
-  2026
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:ff94c29b05d33e4daac221c5ca497dc2c872f99f@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261029T123000Z
 DTEND:20261029T130000Z
 SUMMARY:🔥 US BEA: Personal Income and Outlays\, September 2026
@@ -619,8 +1786,165 @@ DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Septem
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:442d96460e4d20adc58c243a09f837791f8f0079@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261029T123000Z
+DTEND:20261029T130000Z
+SUMMARY:🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Gross Domestic Product\n\n• Measures: Broad change in the 
+ value of goods and services produced by the economy.\n\n• Usual market
+  effect: Stronger-than-forecast GDP can be bullish for the local currenc
+ y and equities\, although the reaction depends on inflation and rate exp
+ ectations.\n\n• Why traders care: GDP is the broadest measure of econo
+ mic growth and helps traders judge whether the economy is accelerating o
+ r slowing.\n\n• Frequency: Quarterly\, with revisions.\n\n• Notes: G
+ DP can be backward-looking\, so markets often react more strongly when t
+ he result changes the outlook for central-bank policy or recession risk.
+ \n\n• Acronyms: GDP = Gross Domestic Product.\n\nOfficial source: http
+ s://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter 2
+ 026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Advance Estimate)\, 3rd Quarter
+  2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:d20aac5ea9a170a5d0861b1b23e272fc9b860d0e@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261030T003000Z
+DTEND:20261030T010000Z
+SUMMARY:🔥 AU ABS: Producer Price Indexes\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Producer Price Index\n\n• Measures: Change in prices 
+ received by producers for goods and services.\n\n• Usual market effect
+ : Higher-than-forecast PPI can be bullish for the local currency if trad
+ ers expect producer inflation to flow through to consumer inflation.\n\n
+ • Why traders care: PPI can provide an early signal of inflation press
+ ure before it reaches consumers.\n\n• Frequency: Monthly in the US. Qu
+ arterly in Australia.\n\n• Notes: PPI is usually less market-moving th
+ an CPI\, but it can still matter when inflation is the main macro theme.
+ \n\n• Acronyms: PPI = Producer Price Index.\n\nOfficial source: https:
+ //www.abs.gov.au/release-calendar/future-releases/202610
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Producer Price Indexes\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Producer Price Indexes\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:9734cb89ddd4f7bcf9757ea81ef0c11eba1e1617@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261118T003000Z
+DTEND:20261118T010000Z
+SUMMARY:🔥 AU ABS: Wage Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Wage Price Index / Average Earnings\n\n• Measures: Ch
+ ange in wages and earnings.\n\n• Usual market effect: Higher-than-fore
+ cast wage growth can be bullish for the local currency if traders expect
+  stronger inflation pressure and tighter central-bank policy.\n\n• Why
+  traders care: Wage growth can feed into inflation and is closely watche
+ d by central banks.\n\n• Frequency: Monthly or quarterly depending on 
+ release.\n\n• Notes: Strong wages can be positive for consumers but ca
+ n also increase inflation pressure.\n\n• Acronyms: WPI = Wage Price In
+ dex.\n\nOfficial source: https://www.abs.gov.au/release-calendar/future-
+ releases/202611
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Wage Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Wage Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:8f932b7be36716a5e89f2b9bb4525f48646c46e0@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261119T003000Z
+DTEND:20261119T010000Z
+SUMMARY:🔥 AU ABS: Labour Force\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Employment / Payrolls / Labour Force\n\n• Measures: C
+ hange in employment\, unemployment\, participation and labour-market str
+ ength.\n\n• Usual market effect: Stronger-than-forecast jobs data is u
+ sually bullish for the local currency and bearish for bonds if it increa
+ ses rate-hike expectations.\n\n• Why traders care: Jobs data is a majo
+ r driver of interest-rate expectations\, consumer spending expectations 
+ and recession-risk pricing.\n\n• Frequency: Monthly.\n\n• Notes: For
+  the US\, Non-Farm Payrolls is one of the most market-moving releases. F
+ or Australia\, Labour Force data is important for RBA expectations.\n\n
+ • Acronyms: NFP = Non-Farm Payrolls\; ABS = Australian Bureau of Stati
+ stics\; BLS = Bureau of Labor Statistics.\n\nOfficial source: https://ww
+ w.abs.gov.au/release-calendar/future-releases/202611
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Labour Force\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:7b31a8a5c47f124bc4aac8818ccfa43ab17680ea@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261125T003000Z
+DTEND:20261125T010000Z
+SUMMARY:🔥 AU ABS: Consumer Price Index\, Australia
+DESCRIPTION:Source: AU ABS\nImpact: high\nReference period\n\nExplainer:\
+ n• What it is: Consumer Price Index\n\n• Measures: Change in the pri
+ ces paid by consumers for a basket of goods and services.\n\n• Usual m
+ arket effect: Higher-than-forecast inflation is usually bullish for the 
+ local currency and bearish for bonds\, because markets may price in high
+ er interest rates.\n\n• Why traders care: CPI is one of the most watch
+ ed inflation indicators because it can quickly shift central-bank rate e
+ xpectations.\n\n• Frequency: US CPI is monthly. Australian CPI has bot
+ h monthly indicator releases and quarterly CPI releases.\n\n• Notes: C
+ ore CPI removes volatile items such as food and energy to give a cleaner
+  read on underlying inflation pressure.\n\n• Acronyms: CPI = Consumer 
+ Price Index.\n\nOfficial source: https://www.abs.gov.au/release-calendar
+ /future-releases/202611
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 AU ABS: Consumer Price Index\, Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:94d754c0025ed531fdc1cce2f382102335b3b25e@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261125T133000Z
 DTEND:20261125T140000Z
 SUMMARY:🔥 US BEA: GDP (Second Estimate) and Corporate Profits\, 3rd Qu
@@ -654,7 +1978,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:47c4274647800928c84649eec207cb14a1be741f@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261125T133000Z
 DTEND:20261125T140000Z
 SUMMARY:🔥 US BEA: Personal Income and Outlays\, October 2026
@@ -689,7 +2013,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:5a90a668d31895378238d7b81124a171e04fc74a@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261209T190000Z
 DTEND:20261209T200000Z
 SUMMARY:🔥 US Fed: FOMC Interest Rate Decision
@@ -722,7 +2046,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:d5a4e5b81f97640cc7a91cb5c8a4e740efffbaf4@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261209T193000Z
 DTEND:20261209T203000Z
 SUMMARY:🔥 US Fed: FOMC Press Conference
@@ -754,8 +2078,43 @@ DESCRIPTION:30 minutes: 🔥 US Fed: FOMC Press Conference
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:e46d41bfeb947d9d31802102574694961c6d2f91@macro-calendar.local
+DTSTAMP:20260603T040514Z
+DTSTART:20261223T133000Z
+DTEND:20261223T140000Z
+SUMMARY:🔥 US BEA: Personal Income and Outlays\, November 2026
+DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
+ What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
+ by consumers for goods and services\, excluding food and energy.\n\n• 
+ Usual market effect: Higher-than-forecast inflation is usually bullish f
+ or USD and bearish for bonds\, because it can increase expectations of t
+ ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
+ of the Federal Reserve's preferred inflation measures\, so it can strong
+ ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
+ ally released about four weeks after the month ends.\n\n• Notes: Core 
+ PCE differs from Core CPI because it uses a different basket and weighti
+ ng method. CPI often gets more immediate market attention\, but Core PCE
+  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
+ mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
+ tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, November
+  2026
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Novemb
+ er 2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:2dcac4daba8465041aae71d1dde728623747fed2@macro-calendar.local
-DTSTAMP:20260603T033558Z
+DTSTAMP:20260603T040514Z
 DTSTART:20261223T133000Z
 DTEND:20261223T140000Z
 SUMMARY:🔥 US BEA: GDP (Third Estimate)\, Industries\, Corporate Profit
@@ -787,41 +2146,6 @@ ACTION:DISPLAY
 DESCRIPTION:30 minutes: 🔥 US BEA: GDP (Third Estimate)\, Industries\, 
  Corporate Profits\, State GDP\, and State Personal Income\, 3rd Quarter 
  2026
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:e46d41bfeb947d9d31802102574694961c6d2f91@macro-calendar.local
-DTSTAMP:20260603T033558Z
-DTSTART:20261223T133000Z
-DTEND:20261223T140000Z
-SUMMARY:🔥 US BEA: Personal Income and Outlays\, November 2026
-DESCRIPTION:Source: US BEA\nImpact: high\nwww.bea.gov\n\nExplainer:\n• 
- What it is: Core PCE Price Index\n\n• Measures: Change in prices paid 
- by consumers for goods and services\, excluding food and energy.\n\n• 
- Usual market effect: Higher-than-forecast inflation is usually bullish f
- or USD and bearish for bonds\, because it can increase expectations of t
- ighter Federal Reserve policy.\n\n• Why traders care: Core PCE is one 
- of the Federal Reserve's preferred inflation measures\, so it can strong
- ly influence interest-rate expectations.\n\n• Frequency: Monthly\, usu
- ally released about four weeks after the month ends.\n\n• Notes: Core 
- PCE differs from Core CPI because it uses a different basket and weighti
- ng method. CPI often gets more immediate market attention\, but Core PCE
-  is very important for Fed policy.\n\n• Acronyms: PCE = Personal Consu
- mption Expenditures\; CPI = Consumer Price Index.\n\nOfficial source: ht
- tps://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics
-STATUS:CONFIRMED
-TRANSP:TRANSPARENT
-BEGIN:VALARM
-TRIGGER:-PT24H
-ACTION:DISPLAY
-DESCRIPTION:Tomorrow: 🔥 US BEA: Personal Income and Outlays\, November
-  2026
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-PT30M
-ACTION:DISPLAY
-DESCRIPTION:30 minutes: 🔥 US BEA: Personal Income and Outlays\, Novemb
- er 2026
 END:VALARM
 END:VEVENT
 END:VCALENDAR
