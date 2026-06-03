@@ -826,58 +826,149 @@ def fetch_rba_events() -> list[MacroEvent]:
 # ----------------------------
 
 def fetch_fomc_events() -> list[MacroEvent]:
-    """Lightweight FOMC parser. Treats second day of meeting as the policy decision day at 2pm New York time."""
+    """
+    Pull FOMC dates from the Federal Reserve's official monthly calendar pages.
+
+    This avoids the old loose parser that scanned the FOMC calendar page text
+    and accidentally created false duplicate FOMC dates.
+    """
     events: list[MacroEvent] = []
 
-    try:
-        text = fetch_text(FED_FOMC)
-        soup = BeautifulSoup(text, "html.parser")
-        page_text = normalise(soup.get_text(" "))
+    month_start = datetime.now(US_EASTERN).replace(
+        day=1,
+        hour=0,
+        minute=0,
+        second=0,
+        microsecond=0,
+    )
 
-        # Matches like: January 27-28 or September 15-16*
-        current_year = datetime.now(US_EASTERN).year
+    for i in range(0, 18):
+        month_dt = month_start + relativedelta(months=i)
+        year = month_dt.year
+        month_slug = month_dt.strftime("%B").lower()
+        month_name = month_dt.strftime("%B")
+        url = f"https://www.federalreserve.gov/newsevents/{year}-{month_slug}.htm"
 
-        for year in [current_year, current_year + 1]:
-            if str(year) not in page_text:
+        try:
+            text = fetch_text(url)
+            soup = BeautifulSoup(text, "html.parser")
+            lines = [normalise(x) for x in soup.get_text("\n").split("\n")]
+            lines = [x for x in lines if x]
+
+            start_idx = None
+            for idx, line in enumerate(lines):
+                if line.lower() == "fomc meetings":
+                    start_idx = idx
+                    break
+
+            if start_idx is None:
                 continue
 
-            # Restrict to a rough window after the year mention.
-            y_idx = page_text.find(str(year))
-            section = page_text[y_idx: y_idx + 2500]
+            section_lines = []
+            for line in lines[start_idx + 1:]:
+                if line in {
+                    "Beige Book",
+                    "Statistical Releases",
+                    "Speeches",
+                    "Testimony",
+                    "Other",
+                    "Announcements",
+                    "Conferences",
+                }:
+                    break
+                section_lines.append(line)
 
-            for m in re.finditer(
-                r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})[-–](\d{1,2})(\*)?",
+            section = " ".join(section_lines)
+
+            # Example from Fed monthly page:
+            # 2:00 p.m. FOMC Meeting Two-day meeting, June 16 - 17
+            meeting_match = re.search(
+                r"(\d{1,2}):(\d{2})\s*(a\.m\.|p\.m\.)\s+"
+                r"FOMC Meeting\s+Two-day meeting,\s+"
+                r"([A-Za-z]+)\s+(\d{1,2})\s*[-–]\s*(\d{1,2})",
                 section,
-            ):
-                month_name, day1, day2, sep = m.groups()
+                flags=re.IGNORECASE,
+            )
 
-                dt = datetime.strptime(
-                    f"{day2} {month_name} {year} 2:00PM",
-                    "%d %B %Y %I:%M%p",
-                ).replace(tzinfo=US_EASTERN)
+            if meeting_match:
+                hour = int(meeting_match.group(1))
+                minute = int(meeting_match.group(2))
+                ampm = meeting_match.group(3).lower()
+                meeting_month = meeting_match.group(4)
+                decision_day = int(meeting_match.group(6))
 
-                title = "FOMC Interest Rate Decision"
+                if ampm == "p.m." and hour != 12:
+                    hour += 12
+                if ampm == "a.m." and hour == 12:
+                    hour = 0
 
-                if sep:
-                    title += " + Summary of Economic Projections"
+                start = datetime.strptime(
+                    f"{decision_day} {meeting_month} {year}",
+                    "%d %B %Y",
+                ).replace(
+                    hour=hour,
+                    minute=minute,
+                    tzinfo=US_EASTERN,
+                )
 
                 events.append(
                     MacroEvent(
                         source="US Fed",
-                        title=title,
-                        start=dt,
-                        end=dt + timedelta(minutes=60),
-                        url=FED_FOMC,
-                        description="FOMC scheduled meeting decision day. Time assumed as 2:00pm New York unless confirmed otherwise.",
+                        title="FOMC Interest Rate Decision",
+                        start=start,
+                        end=start + timedelta(minutes=60),
+                        url=url,
+                        description="Official Federal Reserve monthly calendar FOMC meeting entry.",
                         impact="high",
                     )
                 )
 
-    except Exception as e:
-        print(f"Warning: failed to fetch FOMC events: {e}")
+            # Optional separate press conference event.
+            # Example from Fed monthly page:
+            # 2:30 p.m. FOMC Press Conference 17
+            press_match = re.search(
+                r"(\d{1,2}):(\d{2})\s*(a\.m\.|p\.m\.)\s+"
+                r"FOMC Press Conference\s+(\d{1,2})",
+                section,
+                flags=re.IGNORECASE,
+            )
+
+            if press_match:
+                hour = int(press_match.group(1))
+                minute = int(press_match.group(2))
+                ampm = press_match.group(3).lower()
+                press_day = int(press_match.group(4))
+
+                if ampm == "p.m." and hour != 12:
+                    hour += 12
+                if ampm == "a.m." and hour == 12:
+                    hour = 0
+
+                start = datetime(
+                    year,
+                    month_dt.month,
+                    press_day,
+                    hour,
+                    minute,
+                    tzinfo=US_EASTERN,
+                )
+
+                events.append(
+                    MacroEvent(
+                        source="US Fed",
+                        title="FOMC Press Conference",
+                        start=start,
+                        end=start + timedelta(minutes=60),
+                        url=url,
+                        description="Official Federal Reserve monthly calendar FOMC press conference entry.",
+                        impact="high",
+                    )
+                )
+
+        except Exception as e:
+            print(f"Warning: failed to fetch Fed monthly calendar {url}: {e}")
 
     return events
-
 
 # ----------------------------
 # Build / serve
