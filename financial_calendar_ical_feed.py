@@ -1336,6 +1336,62 @@ def fetch_rba_events() -> list[MacroEvent]:
     return events
 
 
+def manual_rba_cash_rate_events() -> list[MacroEvent]:
+    """
+    Official RBA cash-rate meeting fallback.
+
+    This guarantees the key Monetary Policy Board decision events remain in the
+    feed even if the RBA website layout changes or GitHub Actions cannot parse
+    the live calendar page on a given run. Live scraped RBA events are still
+    preferred/deduped when available.
+    """
+    # 2026 Monetary Policy Board meetings published by the RBA.
+    # The decision statement is released on the final day at 2:30 pm in
+    # Sydney/Melbourne time. The media conference follows at 3:30 pm.
+    rba_decision_dates = [
+        (2026, 2, 3),
+        (2026, 3, 17),
+        (2026, 5, 5),
+        (2026, 6, 16),
+        (2026, 8, 11),
+        (2026, 9, 29),
+        (2026, 11, 3),
+        (2026, 12, 8),
+    ]
+
+    events: list[MacroEvent] = []
+
+    for year, month, day in rba_decision_dates:
+        decision_start = datetime(year, month, day, 14, 30, tzinfo=AU_SYDNEY)
+        conference_start = datetime(year, month, day, 15, 30, tzinfo=AU_SYDNEY)
+
+        events.append(
+            MacroEvent(
+                source="AU RBA",
+                title="RBA Cash Rate Decision",
+                start=decision_start,
+                end=decision_start + timedelta(minutes=30),
+                url=RBA_CALENDAR,
+                description="Official RBA Monetary Policy Decision Statement / cash rate announcement. Manual official-date fallback included so this event cannot disappear if the RBA page parser fails.",
+                impact="high",
+            )
+        )
+
+        events.append(
+            MacroEvent(
+                source="AU RBA",
+                title="RBA Cash Rate Media Conference",
+                start=conference_start,
+                end=conference_start + timedelta(minutes=30),
+                url=RBA_CALENDAR,
+                description="Official RBA media conference following the cash rate decision. Manual official-date fallback included so this event cannot disappear if the RBA page parser fails.",
+                impact="high",
+            )
+        )
+
+    return events
+
+
 # ----------------------------
 # FOMC parser
 # ----------------------------
@@ -1490,6 +1546,8 @@ def collect_events() -> list[MacroEvent]:
     newly_fetched.extend(fetch_official_ics_events())
     newly_fetched.extend(fetch_abs_core_series_events())
     newly_fetched.extend(fetch_rba_events())
+    # Hard fallback for official RBA cash-rate dates, then dedupe if live scrape also worked.
+    newly_fetched.extend(manual_rba_cash_rate_events())
     newly_fetched.extend(fetch_fomc_events())
 
     # Retain existing current-year events so releases do not disappear after
