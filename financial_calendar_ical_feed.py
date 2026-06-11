@@ -1189,6 +1189,11 @@ def fetch_abs_events() -> list[MacroEvent]:
 # ----------------------------
 
 def parse_rba_datetime(line: str) -> datetime | None:
+    """
+    Parse RBA calendar date/time strings such as:
+    - 16 June 2026 2.30 pm AEST
+    - 8 December 2026 3.30 pm AEDT
+    """
     clean = normalise(line).replace("\u00a0", " ")
 
     m = re.search(
@@ -1206,13 +1211,81 @@ def parse_rba_datetime(line: str) -> datetime | None:
 
     try:
         naive = datetime.strptime(f"{date_part} {time_part}", "%d %B %Y %I:%M%p")
+
+        # RBA publishes Melbourne/Sydney/Canberra times.
+        # AU_SYDNEY handles AEST/AEDT automatically.
         return naive.replace(tzinfo=AU_SYDNEY)
 
     except Exception:
         return None
 
 
-def fetch_rba_events() -> list[MacroEvent]:
+def fetch_rba_calendar_events() -> list[MacroEvent]:
+    """
+    Pull RBA cash-rate announcements from the official RBA calendar.
+
+    The RBA calendar lists items like:
+    - Monetary Policy Decision Statement / Media Release / 16 June 2026 2.30 pm AEST
+    - Monetary Policy Decision / Media conference / 16 June 2026 3.30 pm AEST
+    """
+    events: list[MacroEvent] = []
+
+    try:
+        text = fetch_text(RBA_CALENDAR)
+        soup = BeautifulSoup(text, "html.parser")
+        lines = [normalise(x) for x in soup.get_text("\n").split("\n")]
+        lines = [x for x in lines if x]
+
+        for i, line in enumerate(lines):
+            lower = line.lower()
+
+            is_decision_statement = lower == "monetary policy decision statement"
+            is_media_conference = (
+                lower == "monetary policy decision"
+                and any("media conference" in lines[j].lower() for j in range(i + 1, min(i + 4, len(lines))))
+            )
+
+            if not is_decision_statement and not is_media_conference:
+                continue
+
+            start = None
+
+            # The date/time may be on the same line or one of the following lines.
+            for j in range(i, min(i + 8, len(lines))):
+                start = parse_rba_datetime(lines[j])
+                if start:
+                    break
+
+            if not start:
+                continue
+
+            if is_decision_statement:
+                title = "RBA Cash Rate Decision"
+                description = "Official RBA Monetary Policy Decision Statement / cash rate announcement."
+            else:
+                title = "RBA Cash Rate Media Conference"
+                description = "Official RBA media conference following the cash rate decision."
+
+            events.append(
+                MacroEvent(
+                    source="AU RBA",
+                    title=title,
+                    start=start,
+                    end=start + timedelta(minutes=30),
+                    url=RBA_CALENDAR,
+                    description=description,
+                    impact="high",
+                )
+            )
+
+    except Exception as e:
+        print(f"Warning: failed to fetch RBA calendar events: {e}")
+
+    return events
+
+
+def fetch_rba_coming_up_events() -> list[MacroEvent]:
+    """Fallback RBA parser for the Coming Up page if the main calendar page fails."""
     events: list[MacroEvent] = []
 
     try:
@@ -1231,7 +1304,6 @@ def fetch_rba_events() -> list[MacroEvent]:
 
             for j in range(i + 1, min(i + 6, len(lines))):
                 start = parse_rba_datetime(lines[j])
-
                 if start:
                     break
 
@@ -1239,7 +1311,7 @@ def fetch_rba_events() -> list[MacroEvent]:
                 events.append(
                     MacroEvent(
                         source="AU RBA",
-                        title=title,
+                        title="RBA Cash Rate Decision" if "monetary policy" in title.lower() else title,
                         start=start,
                         end=start + timedelta(minutes=30),
                         url=RBA_COMING_UP,
@@ -1249,7 +1321,16 @@ def fetch_rba_events() -> list[MacroEvent]:
                 )
 
     except Exception as e:
-        print(f"Warning: failed to fetch RBA events: {e}")
+        print(f"Warning: failed to fetch RBA Coming Up events: {e}")
+
+    return events
+
+
+def fetch_rba_events() -> list[MacroEvent]:
+    events = fetch_rba_calendar_events()
+
+    if not events:
+        events = fetch_rba_coming_up_events()
 
     return events
 
