@@ -62,6 +62,7 @@ OFFICIAL_ICS_SOURCES = {
 
 ABS_BASE = "https://www.abs.gov.au/release-calendar/future-releases"
 RBA_COMING_UP = "https://www.rba.gov.au/coming-up/"
+RBA_CALENDAR = "https://www.rba.gov.au/schedules-events/calendar/"
 
 # Dedicated ABS series pages for important Australian financial releases.
 # These help retain/recover dates after a release drops out of the general
