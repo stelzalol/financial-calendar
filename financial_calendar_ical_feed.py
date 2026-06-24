@@ -533,6 +533,161 @@ def ics_unescape(text: str) -> str:
     )
 
 
+def extract_official_source_url(description: str | None) -> str | None:
+    """Pull the source URL back out of an existing generated DESCRIPTION."""
+    if not description:
+        return None
+
+    m = re.search(r"Official source:\s*(https?://[^\s\\]+)", description, flags=re.IGNORECASE)
+    if m:
+        return m.group(1).rstrip(".,;)")
+
+    return None
+
+
+def clean_source_description(description: str | None) -> str | None:
+    """
+    Remove generated calendar metadata from an event description before writing it
+    again.
+
+    Why this matters:
+    The script retains events from the previously generated macro-calendar.ics.
+    If we keep the old generated DESCRIPTION and then build a new DESCRIPTION on
+    top of it, Apple Calendar starts showing repeated lines such as:
+        Impact: high
+        Source: AU ABS
+        Impact: high
+        Source: AU ABS
+    This function keeps only useful source notes and strips generated metadata,
+    old explainers, and old official-source lines.
+    """
+    if not description:
+        return None
+
+    text = html.unescape(str(description))
+    text = text.replace("\\n", "\n")
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+
+    cleaned: list[str] = []
+    seen: set[str] = set()
+    skipping_old_explainer = False
+
+    generated_prefixes = (
+        "source:",
+        "impact:",
+        "official source:",
+    )
+
+    generated_bullet_prefixes = (
+        "• what it is:",
+        "• measures:",
+        "• usual market effect:",
+        "• why traders care:",
+        "• frequency:",
+        "• notes:",
+        "• acronyms:",
+    )
+
+    for raw_line in text.split("\n"):
+        line = normalise(raw_line)
+
+        if not line:
+            continue
+
+        lower = line.lower()
+
+        if lower == "explainer:":
+            skipping_old_explainer = True
+            continue
+
+        if skipping_old_explainer:
+            # The official-source line normally comes after the explainer in
+            # this generated feed, so skip it too. The URL is extracted
+            # separately and written once by compose_event_description().
+            continue
+
+        if lower.startswith(generated_prefixes):
+            continue
+
+        if lower.startswith(generated_bullet_prefixes):
+            continue
+
+        key = lower
+        if key in seen:
+            continue
+
+        seen.add(key)
+        cleaned.append(line)
+
+    return "\n".join(cleaned).strip() or None
+
+
+def join_description_blocks(blocks: Iterable[str | None]) -> str:
+    """
+    Join description blocks while removing duplicate non-empty lines.
+    Blank lines are kept only as separators.
+    """
+    output: list[str] = []
+    seen: set[str] = set()
+    last_was_blank = False
+
+    for block in blocks:
+        if not block:
+            continue
+
+        for raw_line in str(block).replace("\r\n", "\n").replace("\r", "\n").split("\n"):
+            line = normalise(raw_line)
+
+            if not line:
+                if output and not last_was_blank:
+                    output.append("")
+                    last_was_blank = True
+                continue
+
+            key = line.lower()
+            if key in seen:
+                continue
+
+            seen.add(key)
+            output.append(line)
+            last_was_blank = False
+
+    while output and output[-1] == "":
+        output.pop()
+
+    return "\n".join(output)
+
+
+def compose_event_description(ev: MacroEvent) -> str:
+    """
+    Build one clean event DESCRIPTION.
+
+    This is the main fix for the repeating Apple Calendar notes bug.
+    It always writes Source/Impact once, strips generated metadata from retained
+    descriptions, then writes the explainer and official source once.
+    """
+    cleaned_description = clean_source_description(ev.description)
+
+    explainer = release_explainer_for(ev.title)
+    explainer_block = None
+    if explainer:
+        explainer_block = "Explainer:\n" + explainer
+
+    source_block = None
+    if ev.url:
+        source_block = f"Official source: {ev.url}"
+
+    return join_description_blocks(
+        [
+            f"Source: {ev.source}",
+            f"Impact: {ev.impact}",
+            cleaned_description,
+            explainer_block,
+            source_block,
+        ]
+    )
+
+
 def summary_to_source_title(summary: str) -> tuple[str, str]:
     clean = normalise(summary)
     clean = re.sub(r"^[🔥📊\s]+", "", clean).strip()
@@ -578,17 +733,15 @@ def parse_existing_calendar_events(path: Path = OUTPUT_FILE) -> list[MacroEvent]
             source, title = summary_to_source_title(summary)
             start = parse_ics_datetime(current.get("DTSTART", ""), UTC)
             end = parse_ics_datetime(current.get("DTEND", ""), UTC)
-            description = ics_unescape(current.get("DESCRIPTION", ""))
+            raw_description = ics_unescape(current.get("DESCRIPTION", ""))
 
             impact = impact_for(title)
-            m = re.search(r"Impact:\s*(high|medium|low)", description, flags=re.IGNORECASE)
+            m = re.search(r"Impact:\s*(high|medium|low)", raw_description, flags=re.IGNORECASE)
             if m:
                 impact = m.group(1).lower()
 
-            url = None
-            m = re.search(r"Official source:\s*(https?://\S+)", description)
-            if m:
-                url = m.group(1)
+            url = current.get("URL") or extract_official_source_url(raw_description)
+            description = clean_source_description(raw_description)
 
             if start and title:
                 events.append(
@@ -619,7 +772,7 @@ def parse_existing_calendar_events(path: Path = OUTPUT_FILE) -> list[MacroEvent]
         if in_event and not in_alarm and ":" in line:
             key, value = line.split(":", 1)
             base_key = key.split(";", 1)[0]
-            if base_key in {"SUMMARY", "DESCRIPTION", "DTSTART", "DTEND"}:
+            if base_key in {"SUMMARY", "DESCRIPTION", "DTSTART", "DTEND", "URL"}:
                 current[base_key] = line if base_key in {"DTSTART", "DTEND"} else value
 
     return events
@@ -683,23 +836,7 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
         summary_prefix = "🔥 " if ev.impact == "high" else "📊 "
         summary = f"{summary_prefix}{ev.source}: {ev.title}"
 
-        desc_parts = [
-            f"Source: {ev.source}",
-            f"Impact: {ev.impact}",
-        ]
-
-        if ev.description:
-            desc_parts.append(ev.description)
-
-        explainer = release_explainer_for(ev.title)
-        if explainer:
-            desc_parts.append("")
-            desc_parts.append("Explainer:")
-            desc_parts.append(explainer)
-
-        if ev.url:
-            desc_parts.append("")
-            desc_parts.append(f"Official source: {ev.url}")
+        description = compose_event_description(ev)
 
         lines.extend(
             [
@@ -709,11 +846,14 @@ def build_ics(events: Iterable[MacroEvent]) -> str:
                 f"DTSTART:{format_ics_datetime(start)}",
                 f"DTEND:{format_ics_datetime(end)}",
                 f"SUMMARY:{ics_escape(summary)}",
-                "DESCRIPTION:" + ics_escape("\n".join(desc_parts)),
+                "DESCRIPTION:" + ics_escape(description),
                 "STATUS:CONFIRMED",
                 "TRANSP:TRANSPARENT",
             ]
         )
+
+        if ev.url:
+            lines.append(f"URL:{ics_escape(ev.url)}")
 
         if ev.impact == "high":
             lines.extend(
@@ -1555,7 +1695,11 @@ def collect_events() -> list[MacroEvent]:
     retained = parse_existing_calendar_events(OUTPUT_FILE)
 
     cutoff = current_year_start_utc()
-    events = [e for e in retained + newly_fetched if ensure_utc(e.start) >= cutoff]
+
+    # Prefer newly fetched official-source events over retained events when
+    # quality is equal. Retained events are only there as a safety net for
+    # releases that have dropped off a source future-calendar page.
+    events = [e for e in newly_fetched + retained if ensure_utc(e.start) >= cutoff]
 
     # Final strict filter. This also prevents old false positives from being retained.
     events = [e for e in events if is_core_high_impact_release(e.title)]
